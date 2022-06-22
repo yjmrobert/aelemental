@@ -1,5 +1,8 @@
-[![Gitter](https://badges.gitter.im/aelemental/community.svg)](https://gitter.im/aelemental/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![dotnet](https://img.shields.io/badge/dotnet-6.0-brightgreen)
+
+
+[![Gitter](https://badges.gitter.im/aelemental/community.svg)](https://gitter.im/aelemental/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 
 # AElemental Framework for Blazor
 
