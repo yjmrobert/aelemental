@@ -17,12 +17,6 @@ _Speed up your web projects with Blazor_
 - Supports Progressive Web Applications (PWA)
 - .NET 6
 
-## 🌈 Online Examples
-
-- [demo site](https://aelemental.z13.web.core.windows.net/)
-
-![Table image](docs/images/Table.png)
-
 ## Fully Open Source
 
 Elemental has the liberal [Apache license](https://www.apache.org/licenses/LICENSE-2.0.html)
