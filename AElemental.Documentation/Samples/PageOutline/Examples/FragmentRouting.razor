@@ -14,12 +14,12 @@
 <a href="#p2">Link to Text 2</a>
 <a href="#p3">Link to Text 3</a>
 
-@foreach (int value in Enumerable.Range(1, 3)) //Places text with Ids P1...P4
+@foreach (var value in Enumerable.Range(1, 3)) //Places text with Ids P1...P4
 {
     <p id="p@(value)">Text @value</p>
-    @foreach (int range in Enumerable.Range(1, 3)) // Adds spacing between <p> tags
+    @foreach (var range in Enumerable.Range(1, 3)) // Adds spacing between <p> tags
     {
-        <br> 
+        <br>
     }
 }
 <AeFragmentRouting></AeFragmentRouting>

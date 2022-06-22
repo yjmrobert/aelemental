@@ -1,4 +1,4 @@
-﻿@using System.Linq;
+﻿@using AElemental.Documentation.Tools
 @*
     Copyright (c) 2020 Apption Corporation
 
@@ -10,14 +10,13 @@
     Description: Single option dropdown selector, hover over 
 *@
 
-<AeTypography>Selected item: @(String.Join(',', selected))</AeTypography>
+<AeTypography>Selected item: @(string.Join(',', selected))</AeTypography>
 
-<AeMultiSelect 
+<AeMultiSelect
     DefaultLabel="Please select a value"
     @bind-SelectedItems="selected"
     Items="_dropdownItems"
-    MultiSelect="true"
-/>
+    MultiSelect="true"/>
 
 @code {
 
@@ -27,8 +26,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _dropdownItems = Enumerable.Range(1, 50).Select(r => Tools.Tools.NumberToWords(r)).ToList();
-        selected = new SortedSet<string>(new [] { _dropdownItems[2] });
+        _dropdownItems = Enumerable.Range(1, 50).Select(r => Tools.NumberToWords(r)).ToList();
+        selected = new SortedSet<string>(new[] {_dropdownItems[2]});
     }
 
 }

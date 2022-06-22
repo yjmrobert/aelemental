@@ -11,17 +11,16 @@
 
 <AeTypography>Selected item: @selected</AeTypography>
 
-<AeMultiSelect 
+<AeMultiSelect
     DefaultLabel="Please select a value"
     @bind-SelectedItem="selected"
-    Items="_dropdownItems"
-/>
+    Items="_dropdownItems"/>
 
 @code {
 
     private string selected = "Second";
 
-    private List<string> _dropdownItems = new List<string>
+    private List<string> _dropdownItems = new()
     {
         "First", "Second", "Third", "Fourth", "Fifth", "Sixth"
     };

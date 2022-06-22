@@ -17,15 +17,15 @@
     Description: This sample uses Category annotations to group and order the different form elements into categories
 *@
 
-<AeModelForm 
-    Model="@_starship" 
-    SubmitLabel="Save changes" 
-    OnValidSubmit="HandleValidSubmit" 
-    CancelLabel="Cancel" 
+<AeModelForm
+    Model="@_starship"
+    SubmitLabel="Save changes"
+    OnValidSubmit="HandleValidSubmit"
+    CancelLabel="Cancel"
     OnConfigure="OnConfigure"
     OnCancel="CreateStarship"
-    IsSectionLocksVisible="true" 
-    CheckedIcon="ri-check-line" />
+    IsSectionLocksVisible="true"
+    CheckedIcon="ri-check-line"/>
 
 <DebugObject Object="@_starship"/>
 
@@ -35,7 +35,7 @@
 
     private async Task<TransportStarship> CreateStarship()
     {
-        return await Task.FromResult(new TransportStarship() { ProductionDate = DateTime.Today.AddYears(200) });
+        return await Task.FromResult(new TransportStarship {ProductionDate = DateTime.Today.AddYears(200)});
     }
 
     protected override async Task OnInitializedAsync()
@@ -45,15 +45,15 @@
 
     private async Task OnConfigure(IModelFormContext context)
     {
-        //Use context.GetLockedCategories to get a List<string> of locked categories
+    //Use context.GetLockedCategories to get a List<string> of locked categories
         var lockedCategories = context.LockedCategories;
         context.RegisterCategoryNotes("Details", "These are the details of your transport ship");
     }
 
-   
+
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

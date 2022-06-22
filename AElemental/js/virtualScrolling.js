@@ -1,6 +1,6 @@
-﻿window.virtualScrolling = {    
+﻿window.virtualScrolling = {
     getScrollView(ref) {
-        return { scrollTop: parseInt(ref.scrollTop), clientHeight: ref.clientHeight };
+        return {scrollTop: parseInt(ref.scrollTop), clientHeight: ref.clientHeight};
 
     }
 

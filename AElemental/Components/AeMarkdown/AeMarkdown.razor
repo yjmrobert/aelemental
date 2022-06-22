@@ -16,13 +16,13 @@
 
 @namespace AElemental.Components
 @using Markdig
+@using Markdig.Renderers
 @using AElemental.Code.Markdown
 @using System.IO
-@using Markdig.Renderers
 @inherits HtmlElement
 
 <AeFlex class="markdown-container">
-    @((MarkupString)RenderHTML())
+    @((MarkupString) RenderHTML())
 </AeFlex>
 
 @code {
@@ -48,9 +48,10 @@
         var renderer = new HtmlRenderer(writer);
         renderer.LinkRewriter = LinkRewriter;
         _pipeline.Setup(renderer);
-        var doc = Markdown.Parse(Content, _pipeline);// ToHtml(testMD, _pipeline);
+        var doc = Markdown.Parse(Content, _pipeline); // ToHtml(testMD, _pipeline);
         renderer.Render(doc);
         writer.Flush();
         return writer.ToString();
-    }    
-} 
+    }
+
+}

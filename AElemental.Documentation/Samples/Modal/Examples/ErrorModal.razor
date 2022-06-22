@@ -1,4 +1,5 @@
-﻿@*
+﻿@using AElemental.Services
+@*
     Copyright (c) 2020 Apption Corporation
 
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,8 +10,6 @@
     Description: Basic example of how to implement an error message modal box.
 *@
 
-@using AElemental.Services
-
 @inject UIControlsService UIControlService
 
 <AeButton @onclick="ShowModal">Show Error Message Modal</AeButton>
@@ -19,12 +18,12 @@
 
     private void ShowModal()
     {
-        UIControlService.ToggleModal(null, 
-            @<AeModalErrorBody 
-                Icon="error-warning"
-                Title="Something went wrong..."
-                ErrorMessage="ERROR_CODE_007: This error is licensed to kill (the process)" 
-            />
-        );
+        UIControlService.ToggleModal(null,
+            @<AeModalErrorBody
+                 Icon="error-warning"
+                 Title="Something went wrong..."
+                 ErrorMessage="ERROR_CODE_007: This error is licensed to kill (the process)"/>
+            );
     }
+
 }

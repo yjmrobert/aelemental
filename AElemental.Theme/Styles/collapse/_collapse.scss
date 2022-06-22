@@ -4,14 +4,14 @@ $collapseOptions: ();
 $sectionOptions: ();
 
 $sectionBodyOptions: (
-  '&.collapsed': (
-    'display': none,
-  ),
+        '&.collapsed': (
+                'display': none,
+        ),
 );
 
 $sectionHeaderOptions: (
-  'cursor': pointer,
-  'border-bottom': 1px solid c.$grey-500,
+        'cursor': pointer,
+        'border-bottom': 1px solid c.$grey-500,
 );
 
 @mixin configure($options) {

@@ -47,19 +47,19 @@
     }
 
     .empty {
-        grid-column-start: 1;
-        grid-column-end: 5;
-        margin: auto;
-        text-align: center;
+      grid-column-start: 1;
+      grid-column-end: 5;
+      margin: auto;
+      text-align: center;
 
-        .ae.icon {
-            font-size: 8rem;
-            color: colors.$grey-400;
-        }
+      .ae.icon {
+        font-size: 8rem;
+        color: colors.$grey-400;
+      }
 
-        .title {
-            font-size: 1.5rem;
-        }
+      .title {
+        font-size: 1.5rem;
+      }
     }
   }
 }

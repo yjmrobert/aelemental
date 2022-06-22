@@ -9,7 +9,7 @@
         <AeTableRow Header GridStyle="@_gridStyle">
             @foreach (var (header, index) in Headers.Select((h, index) => (h, index)))
             {
-                @if (@CustomHeader != null)
+                @if (CustomHeader != null)
                 {
                     @CustomHeader(header, index)
                 }
@@ -28,9 +28,9 @@
             var currentIndex = itemIndex;
             var idx = itemIndex + Page * PageSize;
             <AeTableRow @key=idx GridStyle="@_gridStyle"
-                    tabindex="0"
-                    @onclick="(() => OnRowClick.InvokeAsync(getPageItem(currentIndex)))"
-                    @onfocus="(() => OnRowFocus.InvokeAsync(getPageItem(currentIndex)))">
+                        tabindex="0"
+                        @onclick="() => OnRowClick.InvokeAsync(getPageItem(currentIndex))"
+                        @onfocus="() => OnRowFocus.InvokeAsync(getPageItem(currentIndex))">
                 @foreach (var (accessor, index) in Accessors.Select((a, i) => (a, i)))
                 {
                     if (Renderers?[index] is null)
@@ -47,17 +47,20 @@
                     }
                 }
             </AeTableRow>
-
         }
-</div>
+    </div>
 </div>
 
 @code {
 
-    [Parameter] public int PageSize { get; set; } = 5;
-    [Parameter] public int Page { get; set; } = 0;
+    [Parameter]
+    public int PageSize { get; set; } = 5;
 
-    [Parameter] public AePagination Paginator { get; set; }
+    [Parameter]
+    public int Page { get; set; } = 0;
+
+    [Parameter]
+    public AePagination Paginator { get; set; }
 
     private List<T> PageItems;
     private int? currentPage;
@@ -91,28 +94,33 @@
         this means that PageCount is visible to external objects, but not internally 
         to get around this, we can cast *this* to IPageableComponent, then access PageCount
     */
+
     protected override async Task OnParametersSetAsync()
     {
         Total = Rows.Count();
-        Page = Math.Max(0, Math.Min(Page, ((IPageableComponent)this).PageCount - 1));
+        Page = Math.Max(0, Math.Min(Page, ((IPageableComponent) this).PageCount - 1));
         LoadPageItems(true);
     }
 
     protected override RenderFragment DefaultHeader(string header, int index)
     {
         return
-        @<AeTypography class="table-cell" @onclick="() => SortAndRecalculatePageItems(index)">
-            @header
-            <span class="ae table-sort"><i class="@GetSortIconClass(index)"></i></span>
-        </AeTypography>;
+            @<AeTypography class="table-cell" @onclick="() => SortAndRecalculatePageItems(index)">
+                @header
+                <span class="ae table-sort">
+                    <i class="@GetSortIconClass(index)"></i>
+                </span>
+            </AeTypography>;
     }
 
     private void SortAndRecalculatePageItems(int index)
     {
-        if (Paginator != null){
+        if (Paginator != null)
+        {
             Paginator.OnPageClick.InvokeAsync(0).Wait();
         }
         ToggleSortOnColumn(index);
         LoadPageItems(true);
     }
+
 }

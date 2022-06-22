@@ -23,11 +23,11 @@
             <AeTypography>Walkthrough Section # 2</AeTypography>
         </Elemental.Components.Walkthrough.AeWalkthroughStep>
 
-        <Elemental.Components.Walkthrough.AeWalkthroughStep Order="3" Title="@titles[2]" Content="@contents[2]" Position="right"  Overlap="false" ScrollTo="true">
+        <Elemental.Components.Walkthrough.AeWalkthroughStep Order="3" Title="@titles[2]" Content="@contents[2]" Position="right" Overlap="false" ScrollTo="true">
             <AeTypography>Walkthrough Section # 3</AeTypography>
         </Elemental.Components.Walkthrough.AeWalkthroughStep>
 
-        <Elemental.Components.Walkthrough.AeWalkthroughStep Order="4" Title="@titles[3]" Content="@contents[3]" Position="right" Id="#Test" />
+        <Elemental.Components.Walkthrough.AeWalkthroughStep Order="4" Title="@titles[3]" Content="@contents[3]" Position="right" Id="#Test"/>
 
         <div id="Test">
             <AeTypography> Walkthrough Section # 4 </AeTypography>
@@ -49,10 +49,10 @@
     {
         start = finished;
 
-        //perform anything after completion of the walkthrough
+    //perform anything after completion of the walkthrough
     }
 
-    List<string> titles = new List<string>
+    List<string> titles = new()
     {
         "Walkthrough Section #1",
         "Walkthrough Section #2",
@@ -60,7 +60,7 @@
         "Walkthrough Section #4"
     };
 
-    List<string> contents = new List<string>
+    List<string> contents = new()
     {
         "First step of this walkthrough example. The Position parameter dictates where the guide popup appears relative to the element. Options are auto, left ,right ,top ,bottom. Adding the '-start' suffix to any of the options make it appear at the start of the position. Adding the '-end' suffix to any of the options make it appear at the end of the position.",
         "Second step of this walkthrough example. The Arrow parameter dictates whether you would like an arrow to point to the element focused on",
@@ -69,4 +69,4 @@
     };
 
 
-    } 
+}

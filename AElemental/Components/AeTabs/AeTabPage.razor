@@ -2,21 +2,24 @@
 
 @inherits HtmlElement
 
-@if(Parent._ActivePage == this)
+@if (Parent._ActivePage == this)
 {
     <div class="@_classname">
-      @ChildContent
-    </div>    
+        @ChildContent
+    </div>
 }
 
 @code {
 
     [CascadingParameter]
     private AeTabControl Parent { get; set; }
+
     [Parameter]
     public bool Disable { get; set; }
+
     [Parameter]
     public bool Deletable { get; set; }
+
     [Parameter]
     public RenderFragment Header { get; set; }
 
@@ -32,4 +35,5 @@
     {
         Parent.RemoveTab(this);
     }
+
 }

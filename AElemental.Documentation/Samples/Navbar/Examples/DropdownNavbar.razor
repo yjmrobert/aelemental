@@ -10,46 +10,45 @@
 *@
 
 
-<AeNavbar Links="_navLinks" />
+<AeNavbar Links="_navLinks"/>
 
 
 @code {
 
-    private List<AeNavLink> _navLinks = new List<AeNavLink>
+    private List<AeNavLink> _navLinks = new()
     {
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "Home",
+            Label = "Home"
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "News",
+            Label = "News"
         },
-        new AeNavLink()
+        new()
         {
             Label = "Dropdown",
-            ChildLinks = new List<AeNavLink>()
+            ChildLinks = new List<AeNavLink>
             {
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 1"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 2"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 3"
-                },
+                }
             }
-        },
+        }
     };
+
 }
-
-

@@ -1,6 +1,4 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
 <bx-select
@@ -15,8 +13,10 @@
 </bx-select>
 
 @code {
+
     [Parameter]
     public string? Value { get; set; }
+
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
@@ -47,9 +47,10 @@
             .AddClassFromAttributes(InputAttributes)
             .NullIfEmpty();
     }
-    
+
     private async Task HandleAeSelectSelected(AeSelectSelectedEventArgs eventArgs)
     {
         await ValueChanged.InvokeAsync(eventArgs.Value);
     }
+
 }

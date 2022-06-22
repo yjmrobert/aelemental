@@ -3,27 +3,28 @@
 
 @inherits HtmlElement
 
-<bx-progress-step 
+<bx-progress-step
     @onclick="HandleOnClick"
     style="@_style"
     class="@_class"
     @attributes="@InputAttributesWithoutClassOrStyle"
     disabled="@Disabled"
-    label-text="@Label" 
-    secondary-label-text="@SecondaryLabel" 
-    state="@State"></bx-progress-step>
+    label-text="@Label"
+    secondary-label-text="@SecondaryLabel"
+    state="@State">
+</bx-progress-step>
 
 @code {
 
     [Parameter]
     public bool Disabled { get; set; }
-    
+
     [Parameter]
     public string State { get; set; } = States.Default;
 
     [Parameter]
     public string? Label { get; set; }
-    
+
     [Parameter]
     public string? SecondaryLabel { get; set; }
 
@@ -32,11 +33,11 @@
 
     private string? _style;
     private string? _class;
-    
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyleFromAttributes(InputAttributes)
             .NullIfEmpty();
@@ -45,9 +46,10 @@
             .AddClassFromAttributes(InputAttributes)
             .NullIfEmpty();
     }
-    
+
     private async Task HandleOnClick(MouseEventArgs args)
     {
         await OnClickEvent.InvokeAsync(args);
     }
+
 }

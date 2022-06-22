@@ -1,34 +1,34 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlInputElement
 
-@if(Pre is null && Post is null)
+@if (Pre is null && Post is null)
 {
-    <input @attributes="InputAttributesWithoutClass" type="text" class="@_classname" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder" />
+    <input @attributes="InputAttributesWithoutClass" type="text" class="@_classname" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder"/>
 }
 else
 {
-<span class="@_wrapperClassname" @attributes="InputAttributesWithoutClass">
-    @if(Pre != null)
-    {
-        <span class="ae input-sider pre">
-            @Pre
-        </span>
-    }
-    <input type="text" class="@_wrappedInputClassname" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder" />
-    @if(Post != null)
-    {
-        <span class="ae input-sider post">
-            @Post
-        </span>
-    }
-</span>
+    <span class="@_wrapperClassname" @attributes="InputAttributesWithoutClass">
+        @if (Pre != null)
+        {
+            <span class="ae input-sider pre">
+                @Pre
+            </span>
+        }
+        <input type="text" class="@_wrappedInputClassname" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder"/>
+        @if (Post != null)
+        {
+            <span class="ae input-sider post">
+                @Post
+            </span>
+        }
+    </span>
 }
 
 @code {
+
     [Parameter]
     public RenderFragment Pre { get; set; }
+
     [Parameter]
     public RenderFragment Post { get; set; }
 

@@ -6,7 +6,7 @@
 
         var popperModifiers = {
             modifiers: [{
-                name: 'offset', options: { offset: [0, 3] }
+                name: 'offset', options: {offset: [0, 3]}
             }, {
                 name: 'flip',
                 options: {
@@ -16,7 +16,7 @@
                 name: 'eventListeners',
                 options: {
                     resize: true,
-                    vfdvd:true,
+                    vfdvd: true,
                 }
             }]
         }
@@ -26,7 +26,7 @@
                 cancelIcon: {
                     enabled: true
                 },
-                scrollTo: { behavior: 'smooth', block: 'center' },
+                scrollTo: {behavior: 'smooth', block: 'center'},
                 canClickTarget: props.clickable ? true : false,
                 popperOptions: popperModifiers
             },
@@ -43,7 +43,12 @@
                 },
                 buttons: this.getButtons(step.order, steps.length),
                 scrollTo: !step.scrollTo ? false : true,
-                popperOptions: !step.overlap ? { modifiers: [{ name: 'preventOverflow', options: { altAxis: false } }] } : popperModifiers,
+                popperOptions: !step.overlap ? {
+                    modifiers: [{
+                        name: 'preventOverflow',
+                        options: {altAxis: false}
+                    }]
+                } : popperModifiers,
                 id: step.id,
                 arrow: !step.arrow ? false : true
             })

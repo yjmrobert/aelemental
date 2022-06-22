@@ -1,6 +1,4 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
 <i class="@_classname" @attributes="InputAttributesWithoutClass"></i>
@@ -12,30 +10,33 @@
 
     [Parameter]
     public string? RxIconName { get; set; }
+
     [Parameter]
     public string? RxStyle { get; set; } = RxIcon.RxStyle.Line;
+
     [Parameter]
     public string? RxSize { get; set; }
-    
+
 
     private string? _classname;
     private string? _style;
-    
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyleFromAttributes(InputAttributes)
-            .NullIfEmpty();  
-        
+            .NullIfEmpty();
+
         _classname = new AeCssClassBuilder()
-            .AddClass($"ri-{RxIconName}-{RxStyle}", when: UseRemixIconLibrary)
-            .AddClass($"{RxIconName}", when: UseRemixIconLibrary && !string.IsNullOrEmpty(RxIconName))
-            .AddClass($"{RxSize}", when: UseRemixIconLibrary && !string.IsNullOrEmpty(RxSize))
+            .AddClass($"ri-{RxIconName}-{RxStyle}", UseRemixIconLibrary)
+            .AddClass($"{RxIconName}", UseRemixIconLibrary && !string.IsNullOrEmpty(RxIconName))
+            .AddClass($"{RxSize}", UseRemixIconLibrary && !string.IsNullOrEmpty(RxSize))
             .AddClassFromAttributes(InputAttributes)
             .SetPrefix("ae-")
             .AddClass("icon")
             .NullIfEmpty();
     }
+
 }

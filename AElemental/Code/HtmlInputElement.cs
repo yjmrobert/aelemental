@@ -14,54 +14,53 @@
  * limitations under the License.
  */
 
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Timers;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
-namespace AElemental.Code
+namespace AElemental.Code;
+
+public class HtmlInputElement : HtmlElement
 {
-    public class HtmlInputElement : HtmlElement
+    protected string _inputValue = "";
+
+    protected KeyboardEventArgs _lastKey;
+    protected Timer inputTimer;
+
+    [Parameter] public string Placeholder { get; set; }
+
+    [Parameter] public EventCallback<string> OnInputChange { get; set; }
+
+    [Parameter] public int EventTimer { get; set; } = 500;
+
+    [Parameter] public string DefaultValue { get; set; }
+
+    [Parameter] public Action<string, KeyboardEventArgs> OnInputChangeWithLastKey { get; set; }
+
+    protected override void OnInitialized()
     {
-        [Parameter]
-        public string Placeholder { get; set; }
-        [Parameter]
-        public EventCallback<string> OnInputChange { get; set; }
-        [Parameter]
-        public int EventTimer { get; set; } = 500;
-        [Parameter]
-        public string DefaultValue { get; set; }
-        [Parameter]
-        public Action<string, KeyboardEventArgs> OnInputChangeWithLastKey { get; set; }
-        
-        protected KeyboardEventArgs _lastKey;
-        protected string _inputValue = "";
-        protected Timer inputTimer;
+        base.OnInitialized();
 
-        protected override void OnInitialized()
+        inputTimer = new Timer(EventTimer);
+        inputTimer.Elapsed += OnTimerFire;
+        inputTimer.AutoReset = false;
+        _inputValue = DefaultValue;
+    }
+
+    protected void HandleKeyUp(KeyboardEventArgs e)
+    {
+        inputTimer.Stop();
+        _lastKey = e;
+        inputTimer.Start();
+    }
+
+    protected void OnTimerFire(object source, ElapsedEventArgs e)
+    {
+        InvokeAsync(async () =>
         {
-            base.OnInitialized();
-
-            inputTimer = new Timer(EventTimer);
-            inputTimer.Elapsed += OnTimerFire;
-            inputTimer.AutoReset = false;
-            _inputValue = DefaultValue;
-        }
-
-        protected void HandleKeyUp(KeyboardEventArgs e)
-        {
-            inputTimer.Stop();
-            _lastKey = e;
-            inputTimer.Start();
-        }
-
-        protected void OnTimerFire(Object source, ElapsedEventArgs e)
-        {
-            InvokeAsync(async () =>
-            {
-                await OnInputChange.InvokeAsync(_inputValue);
-                OnInputChangeWithLastKey?.Invoke(_inputValue, _lastKey);
-            });
-        }
+            await OnInputChange.InvokeAsync(_inputValue);
+            OnInputChangeWithLastKey?.Invoke(_inputValue, _lastKey);
+        });
     }
 }

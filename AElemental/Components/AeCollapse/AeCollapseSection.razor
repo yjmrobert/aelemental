@@ -27,11 +27,13 @@
 
     protected override void OnInitialized()
     {
-        if(Parent == null){
+        if (Parent == null)
+        {
             throw new ArgumentNullException(nameof(Parent), "AeCollapseSection must exist within a AeCollapse component");
         }
         base.OnInitialized();
 
         Parent.AddSection(this);
     }
+
 }

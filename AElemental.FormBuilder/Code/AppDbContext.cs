@@ -1,21 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace AElemental.FormBuilder.Code
+namespace AElemental.FormBuilder.Code;
+
+public class AppDbContext : DbContext
 {
-    public class AppDbContext : DbContext
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
+    }
 
-        }
+    public DbSet<FormField> FormFields { get; set; }
 
-        public DbSet<FormField> FormFields { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<FormField>().HasData(new FormField()
+        modelBuilder.Entity<FormField>().HasData(new FormField
             {
                 FormFieldID = 1,
                 Section = "Basic info",
@@ -25,7 +24,7 @@ namespace AElemental.FormBuilder.Code
                 Mandatory = true,
                 FieldType = "Text"
             },
-            new FormField()
+            new FormField
             {
                 FormFieldID = 2,
                 Section = "Basic info",
@@ -34,7 +33,7 @@ namespace AElemental.FormBuilder.Code
                 MaxLength = 400,
                 FieldType = "Text"
             },
-            new FormField()
+            new FormField
             {
                 FormFieldID = 3,
                 Section = "Basic info",
@@ -43,7 +42,7 @@ namespace AElemental.FormBuilder.Code
                 Mandatory = true,
                 FieldType = "Date"
             },
-            new FormField()
+            new FormField
             {
                 FormFieldID = 4,
                 Section = "Price",
@@ -52,7 +51,5 @@ namespace AElemental.FormBuilder.Code
                 Mandatory = true,
                 FieldType = "Money"
             });
-
-        }
     }
 }

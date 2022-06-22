@@ -1,6 +1,4 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
 <div class="@_classname" @attributes="InputAttributes">
@@ -8,7 +6,9 @@
 </div>
 
 @code {
+
     [Parameter]
     public bool Vertical { get; set; }
+
     private string _classname => $"ae flex {_inputClass} {(Vertical ? "vertical" : "")}";
 }

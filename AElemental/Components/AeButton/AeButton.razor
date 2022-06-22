@@ -1,5 +1,3 @@
-
-
 @namespace AElemental.Components
 @inherits HtmlElement
 @inject NavigationManager NavigationManager
@@ -30,11 +28,11 @@
 
     private string? _style;
     private string? _class;
-    
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyle("display", "inline-flex")
             .AddStyleFromAttributes(InputAttributes)

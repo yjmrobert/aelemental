@@ -18,22 +18,22 @@
 *@
 
 <div>
-  Read-Only <AeToggle class="round" @bind-IsChecked="IsReadOnly" />
+    Read-Only <AeToggle class="round" @bind-IsChecked="IsReadOnly"/>
 </div>
 
-<AeModelForm 
-    Model="@_starship" 
-    SubmitLabel="Save changes" 
-    OnValidSubmit="HandleValidSubmit" 
-    CancelLabel="Cancel" 
+<AeModelForm
+    Model="@_starship"
+    SubmitLabel="Save changes"
+    OnValidSubmit="HandleValidSubmit"
+    CancelLabel="Cancel"
     OnCancel="CreateStarship"
     IsReadOnly="IsReadOnly"
     LabelsOnTop
-    Flexbox />
+    Flexbox/>
 
 <DebugObject Object="@_starship"/>
 
-@code { 
+@code {
 
     private bool IsReadOnly { get; set; } = false;
 
@@ -41,9 +41,9 @@
 
     private async Task<Starship3> CreateStarship()
     {
-        return await Task.FromResult(new Starship3() {  ProductionDate = DateTime.Today}); 
+        return await Task.FromResult(new Starship3 {ProductionDate = DateTime.Today});
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
         _starship = await CreateStarship();
@@ -51,7 +51,7 @@
 
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

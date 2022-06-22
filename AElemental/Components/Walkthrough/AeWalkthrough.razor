@@ -17,9 +17,10 @@
     </div>
 </CascadingValue>
 
-@functions { protected internal List<AeWalkthroughStep> Steps = new List<AeWalkthroughStep>();
+@functions {
+    protected internal List<AeWalkthroughStep> Steps = new();
 
-    protected internal List<StepItem> StepsForJs = new List<StepItem>();
+    protected internal List<StepItem> StepsForJs = new();
 
     [Parameter]
     public string Id { get; set; }
@@ -41,7 +42,10 @@
 
     public bool IsLastStep { get; set; }
 
-    public int StepsIndex(AeWalkthroughStep step) => StepsIndexInternal(step);
+    public int StepsIndex(AeWalkthroughStep step)
+    {
+        return StepsIndexInternal(step);
+    }
 
     protected int StepsIndexInternal(AeWalkthroughStep step)
     {
@@ -51,7 +55,7 @@
         return Steps.IndexOf(step);
     }
 
-    protected async override void OnParametersSet()
+    protected override async void OnParametersSet()
     {
         if (Start)
         {
@@ -73,8 +77,8 @@
 
     private async void Guide()
     {
-        DotNetObjectReference<AeWalkthrough> lDotNetReference = DotNetObjectReference.Create(this);
-        await JSRuntime.InvokeAsync<Object>("walkThroughHelper.walkThrough", new { steps = StepsForJs, overlay = Overlay, clickable = Clickable, dotNetReference = lDotNetReference });
+        var lDotNetReference = DotNetObjectReference.Create(this);
+        await JSRuntime.InvokeAsync<object>("walkThroughHelper.walkThrough", new {steps = StepsForJs, overlay = Overlay, clickable = Clickable, dotNetReference = lDotNetReference});
     }
 
     public class StepItem
@@ -106,4 +110,6 @@
             Arrow = arrow;
             Overlap = overlap;
         }
-    } }
+    }
+
+}

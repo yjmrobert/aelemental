@@ -1,6 +1,4 @@
-﻿@using AElemental;
-
-@if (file != null)
+﻿@if (file != null)
 {
     <AeFlex Vertical class="demo-section">
         @if (file.Title != null)
@@ -26,7 +24,7 @@
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">C#</AeTypography>
                     <AeCode LineType="@AeCode.LineTypes.Multiline">
-                        @(string.Join(System.Environment.NewLine, file.AdditionalCode).Trim())
+                        @string.Join(Environment.NewLine, file.AdditionalCode).Trim()
                     </AeCode>
                     @* <div class="code-wrapper"> *@
                     @*     <pre style="margin: 0"><code class="language-csharp">@(string.Join(System.Environment.NewLine, file.AdditionalCode))</code></pre> *@
@@ -37,7 +35,7 @@
                 {
                     <AeTypography style="margin-top: 0;" Variant="h4">Markup</AeTypography>
                     <AeCode LineType="@AeCode.LineTypes.Multiline">
-                        @(string.Join(System.Environment.NewLine, file.Html).Trim())
+                        @string.Join(Environment.NewLine, file.Html).Trim()
                     </AeCode>
                     @* <div class="code-wrapper"> *@
                     @*     <pre style="margin: 0"><code class="language-html">@(string.Join(System.Environment.NewLine, file.Html))</code></pre> *@
@@ -47,7 +45,7 @@
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">C#</AeTypography>
                     <AeCode LineType="@AeCode.LineTypes.Multiline">
-                        @(string.Join(System.Environment.NewLine, file.Code).Trim())
+                        @string.Join(Environment.NewLine, file.Code).Trim()
                     </AeCode>
                     @* <div class="code-wrapper"> *@
                     @*     <pre style="margin: 0"><code class="language-csharp">@(string.Join(System.Environment.NewLine, file.Code))</code></pre> *@
@@ -57,7 +55,7 @@
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">SCSS</AeTypography>
                     <AeCode LineType="@AeCode.LineTypes.Multiline">
-                        @(string.Join(System.Environment.NewLine, file.Scss).Trim())
+                        @string.Join(Environment.NewLine, file.Scss).Trim()
                     </AeCode>
                     @* <div class="code-wrapper"> *@
                     @*     <pre style="margin: 0"><code class="language-scss">@(string.Join(System.Environment.NewLine, file.Scss))</code></pre> *@
@@ -73,8 +71,10 @@ else
 }
 
 @code {
+
     [Parameter]
     public string Path { get; set; }
+
     [Parameter]
     public string AdditionalCS { get; set; }
 
@@ -87,4 +87,5 @@ else
     {
         file = new ParsedFile(Path, AdditionalCS);
     }
+
 }

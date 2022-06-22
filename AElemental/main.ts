@@ -11,6 +11,5 @@ import 'carbon-web-components/es/components/tooltip/index.js';
 
 import './Components/AeButton/AeButton';
 import './Components/AeCheckbox/AeCheckbox';
-import './Components/AeDropdown/AeDropdown'; 
-import './Components/AeSelect/AeSelect'; 
-
+import './Components/AeDropdown/AeDropdown';
+import './Components/AeSelect/AeSelect';

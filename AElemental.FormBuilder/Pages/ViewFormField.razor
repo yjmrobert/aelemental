@@ -1,72 +1,74 @@
 ﻿@page "/formfields/view/{id}"
-@inject Code.IFormFieldRepository Repo
+@using AElemental.FormBuilder.Code
+@inject IFormFieldRepository Repo
 @inject NavigationManager NavManager
 
-@if(_formField == null)
+@if (_formField == null)
 {
     <h3>Please Wait</h3>
 }
-else 
+else
 {
     <h3>@_formField.Section - @_formField.Field</h3>
 
     @if (_mode == ViewMode.View)
     {
-
         <table>
             <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Value</th>
-                </tr>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Section</td>
-                    <td>@_formField.Section</td>
-                </tr>
-                <tr>
-                    <td>Field</td>
-                    <td>@_formField.Field</td>
-                </tr>
-                <tr>
-                    <td>Extension</td>
-                    <td>@_formField.ExtensionLabel</td>
-                </tr>
-                <tr>
-                    <td>MaxLength</td>
-                    <td>@_formField.MaxLength</td>
-                </tr>
-                <tr>
-                    <td>Mandatory</td>
-                    <td>@_formField.Mandatory</td>
-                </tr>
-                <tr>
-                    <td>Dropdown option count</td>
-                    <td>@_formField.DropdownOptionCount</td>
-                </tr>
-                <tr>
-                    <td>Formatted</td>
-                    <td>@_formField.Formatted</td>
-                </tr>
-                <tr>
-                    <td>Code</td>
-                    <td>@_formField.Code</td>
-                </tr>
-                <tr>
-                    <td>SQL Name</td>
-                    <td>@_formField.SQLName</td>
-                </tr>
-                <tr>
-                    <td>JSON</td>
-                    <td><pre><code>@_formField.JSON</code></pre></td>
-                </tr>
-                <tr>
-                    <td>C# Code</td>
-                    <td>
-                        <pre><code>@_formField.CSCode</code></pre>
-                    </td>
-                </tr>
+            <tr>
+                <td>Section</td>
+                <td>@_formField.Section</td>
+            </tr>
+            <tr>
+                <td>Field</td>
+                <td>@_formField.Field</td>
+            </tr>
+            <tr>
+                <td>Extension</td>
+                <td>@_formField.ExtensionLabel</td>
+            </tr>
+            <tr>
+                <td>MaxLength</td>
+                <td>@_formField.MaxLength</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>@_formField.Mandatory</td>
+            </tr>
+            <tr>
+                <td>Dropdown option count</td>
+                <td>@_formField.DropdownOptionCount</td>
+            </tr>
+            <tr>
+                <td>Formatted</td>
+                <td>@_formField.Formatted</td>
+            </tr>
+            <tr>
+                <td>Code</td>
+                <td>@_formField.Code</td>
+            </tr>
+            <tr>
+                <td>SQL Name</td>
+                <td>@_formField.SQLName</td>
+            </tr>
+            <tr>
+                <td>JSON</td>
+                <td>
+                    <pre><code>@_formField.JSON</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>C# Code</td>
+                <td>
+                    <pre><code>@_formField.CSCode</code></pre>
+                </td>
+            </tr>
             </tbody>
         </table>
 
@@ -79,9 +81,7 @@ else
             SubmitLabel="Save Changes"
             OnValidSubmit="@HandleValidSubmit"
             CancelLabel="Cancel"
-            OnCancel="@HandleCancel"
-        />
-
+            OnCancel="@HandleCancel"/>
     }
 }
 
@@ -89,10 +89,14 @@ else
 <AeButton To="/formfields">Back</AeButton>
 
 
-
 @code {
 
-    private enum ViewMode { View, Edit }
+    private enum ViewMode
+    {
+        View,
+        Edit
+    }
+
     private ViewMode _mode = ViewMode.View;
 
     [Parameter]
@@ -143,4 +147,3 @@ else
     }
 
 }
-   

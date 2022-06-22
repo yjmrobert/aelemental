@@ -18,11 +18,14 @@
 @code {
     private string _title = "... you're still using IE?";
     private string _message = "pssst... it's not 2006 anymore";
-    private RenderFragment _icon =@<i class="fad fa-scroll-old fa-10x"></i>;
+
+    private RenderFragment _icon = @<i class="fad fa-scroll-old fa-10x"></i>;
+
     private bool _showMessage;
 
     private void ToggleWarning()
     {
         _showMessage = !_showMessage;
     }
+
 }

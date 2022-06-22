@@ -1,57 +1,59 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 @inject IJSRuntime JSRuntime
 @typeparam T
 
 @if (MultiSelect)
 {
-<AeFlex style="flex-wrap:wrap">
-    @foreach(var item in Items)
-    {
-        <AeFlex style="margin-right: 1em; margin-bottom: 0.3em">
-            <AeCheckbox IsChecked="SelectedItems.Contains(item)" IsCheckedChanged="b => ToggleItemSelected(item,b)" />@Renderer(item)
-        </AeFlex>
-    }
-</AeFlex>   
+    <AeFlex style="flex-wrap:wrap">
+        @foreach (var item in Items)
+        {
+            <AeFlex style="margin-right: 1em; margin-bottom: 0.3em">
+                <AeCheckbox IsChecked="SelectedItems.Contains(item)" IsCheckedChanged="b => ToggleItemSelected(item,b)"/>@Renderer(item)
+            </AeFlex>
+        }
+    </AeFlex>
 }
 else
 {
     var idx = Items.IndexOf(SelectedItem);
-<div class="ae content-wrapper">
-<select @key=SelectedItem @onchange="DropdownChanged">
-    @if (DefaultLabel != null)
-    {                
-        <option @key=@DefaultLabel value="-1" selected="@(idx < 0)">@DefaultLabel</option>
-    }
-    @for (var il = 0;il < Items.Count;il++)
-    {
-        var current = il;
-        <option @key=Items[current] value=@current selected="@(idx == current)">@Renderer(Items[current])</option>                
-    }
-</select>
-</div>    
+    <div class="ae content-wrapper">
+        <select @key=SelectedItem @onchange="DropdownChanged">
+            @if (DefaultLabel != null)
+            {
+                <option @key=@DefaultLabel value="-1" selected="@(idx < 0)">@DefaultLabel</option>
+            }
+            @for (var il = 0; il < Items.Count; il++)
+            {
+                var current = il;
+                <option @key=Items[current] value=@current selected="@(idx == current)">@Renderer(Items[current])</option>
+            }
+        </select>
+    </div>
 }
+
 @code {
-    private SortedSet<T> selectedItems = new SortedSet<T>();
+    private SortedSet<T> selectedItems = new();
 
     [Parameter]
     public List<T> Items { get; set; }
+
     [Parameter]
     public string DefaultLabel { get; set; } = null;
+
     [Parameter]
     public string NullValue { get; set; } = "-";
+
     [Parameter]
     public T? SelectedItem { get; set; }
+
     [Parameter]
     public EventCallback<T?> SelectedItemChanged { get; set; }
+
     [Parameter]
-    public SortedSet<T> SelectedItems {
-        get
-        {
-            return selectedItems;
-        }
+    public SortedSet<T> SelectedItems
+    {
+        get => selectedItems;
         set
         {
             if (value?.Count > 1 && !MultiSelect)
@@ -62,11 +64,15 @@ else
             {
                 selectedItems = value ?? new SortedSet<T>();
             }
-        }}
+        }
+    }
+
     [Parameter]
     public EventCallback<SortedSet<T>> SelectedItemsChanged { get; set; }
+
     [Parameter]
     public bool MultiSelect { get; set; } = false;
+
     [Parameter]
     public Func<T, string> Renderer { get; set; }
 
@@ -76,7 +82,7 @@ else
     private RenderFragment _labelFragment;
 
     private async Task DropdownChanged(ChangeEventArgs args)
-    {        
+    {
         var currentIdx = Convert.ToInt32(args.Value);
         selectedItems.Clear();
         if (currentIdx >= 0)
@@ -89,15 +95,15 @@ else
         }
         else
         {
-            SelectedItem = default(T);
-            await SelectedItemChanged.InvokeAsync(default(T));
-            await SelectedItemsChanged.InvokeAsync(selectedItems);            
+            SelectedItem = default;
+            await SelectedItemChanged.InvokeAsync(default);
+            await SelectedItemsChanged.InvokeAsync(selectedItems);
         }
     }
 
     protected override void OnParametersSet()
     {
-        if(Renderer is null)
+        if (Renderer is null)
         {
             Renderer = item => item?.ToString() ?? NullValue;
         }

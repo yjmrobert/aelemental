@@ -3,6 +3,7 @@
 @implements IDisposable
 
 @code {
+
     protected override void OnInitialized()
     {
         NavigationManager.LocationChanged += OnLocationChanged;
@@ -18,7 +19,10 @@
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
 
-    private async void OnLocationChanged(object sender, EventArgs e) => await ScrollToFragment();
+    private async void OnLocationChanged(object sender, EventArgs e)
+    {
+        await ScrollToFragment();
+    }
 
     private async Task ScrollToFragment()
     {
@@ -39,4 +43,5 @@
             }
         }
     }
+
 }

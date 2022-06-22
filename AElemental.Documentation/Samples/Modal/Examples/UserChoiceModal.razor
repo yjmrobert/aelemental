@@ -1,5 +1,4 @@
-﻿
-<div class="ae modal-wrapper">
+﻿<div class="ae modal-wrapper">
     <AeTypography Variant="h4" class="ae modal-title">@HeaderText</AeTypography>
     @foreach (var text in ChoiceTextList)
     {
@@ -12,10 +11,13 @@
 </div>
 
 @code{
+
     [Parameter]
     public Action<bool> OnDecision { get; set; }
+
     [Parameter]
     public List<string> ChoiceTextList { get; set; }
+
     [Parameter]
     public string HeaderText { get; set; }
 

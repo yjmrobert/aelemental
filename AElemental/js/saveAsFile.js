@@ -9,12 +9,11 @@
             }
         }
         _blazorDownloadFileData = null;
-        var _blazorDownloadFileBlob = new Blob([_blazorDownloadFileBytes.buffer], { type: "application/octet-stream" });
+        var _blazorDownloadFileBlob = new Blob([_blazorDownloadFileBytes.buffer], {type: "application/octet-stream"});
         _blazorDownloadFileBytes = null;
         navigator.msSaveBlob(_blazorDownloadFileBlob, filename);
         _blazorDownloadFileBlob = null;
-    }
-    else {
+    } else {
         //Download document in other browsers
         var link = document.createElement('a');
         link.download = filename;

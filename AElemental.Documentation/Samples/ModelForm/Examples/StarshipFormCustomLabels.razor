@@ -17,13 +17,13 @@
     Description: Example shows how to customize labels generated from each property using a function
 *@
 
-<AeModelForm 
-    Model="@_starship" 
-    SubmitLabel="Save changes" 
-    OnValidSubmit="HandleValidSubmit" 
-    CancelLabel="Cancel" 
+<AeModelForm
+    Model="@_starship"
+    SubmitLabel="Save changes"
+    OnValidSubmit="HandleValidSubmit"
+    CancelLabel="Cancel"
     LabelForPropertyFunc="GetLabel"
-    OnCancel="CreateStarship" />
+    OnCancel="CreateStarship"/>
 
 <DebugObject Object="@_starship"/>
 
@@ -32,7 +32,7 @@
 
     private async Task<Starship> CreateStarship()
     {
-        return await Task.FromResult(new Starship() { ProductionDate = DateTime.Today });
+        return await Task.FromResult(new Starship {ProductionDate = DateTime.Today});
     }
 
     protected override async Task OnInitializedAsync()
@@ -42,7 +42,7 @@
 
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

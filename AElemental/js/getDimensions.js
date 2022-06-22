@@ -1,12 +1,12 @@
 ﻿//simple script for use with GetDimensionsService.cs
 window.getDimensions = function (element) {
-  return {
-    width: element.clientWidth,
-    height: element.clientHeight
-  };
+    return {
+        width: element.clientWidth,
+        height: element.clientHeight
+    };
 };
 
-window.getPosition = function (element) {    
+window.getPosition = function (element) {
     var rect = element.getBoundingClientRect();
     return {
         top: Math.floor(rect.top),

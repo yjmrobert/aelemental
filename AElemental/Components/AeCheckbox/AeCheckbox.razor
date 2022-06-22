@@ -2,41 +2,40 @@
 
 @namespace AElemental.Components
 
-<ae-checkbox 
+<ae-checkbox
     style="@_style"
     class="@_class"
     label-text="@LabelText"
     checked="@Checked"
     disabled="@Disabled"
     indeterminate="@Indeterminate"
-    @onclick="OnClick"
->
+    @onclick="OnClick">
 </ae-checkbox>
 
 @code {
 
     [Parameter]
     public bool Checked { get; set; }
-    
+
     [Parameter]
     public bool Indeterminate { get; set; }
-    
+
     [Parameter]
     public bool Disabled { get; set; }
-    
+
     [Parameter]
     public string LabelText { get; set; }
-    
+
     [Parameter]
     public EventCallback<bool> CheckedChanged { get; set; }
-    
+
     private string? _style;
     private string? _class;
-    
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyleFromAttributes(InputAttributes)
             .NullIfEmpty();
@@ -55,4 +54,5 @@
             await CheckedChanged.InvokeAsync(Checked);
         }
     }
+
 }

@@ -1,11 +1,9 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
 <div class="@_classname" @attributes="InputAttributesWithoutClass">
     <div class="outer">
-        @if (@Percent < 100)
+        @if (Percent < 100)
         {
             <div class="fill" style="width:@Percent%">
             </div>
@@ -16,7 +14,7 @@
             </div>
         }
     </div>
-    @if (@showPercent == true)
+    @if (showPercent)
     {
         <span class="text">@Percent %</span>
     }
@@ -27,9 +25,10 @@
 
     [Parameter]
     public float Percent { get; set; }
+
     [Parameter]
     public bool showPercent { get; set; }
 
 
     private string _classname => $"ae progress {_inputClass}";
-} 
+}

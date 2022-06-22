@@ -14,19 +14,19 @@
 
     <div class="showcase">
         <EditForm Model="_starship" OnValidSubmit="HandleValidSubmit">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
 
             <p>
                 <label>
                     Identifier:
-                    <InputText @bind-Value="_starship.Identifier" />
+                    <InputText @bind-Value="_starship.Identifier"/>
                 </label>
             </p>
             <p>
                 <label>
                     Description (optional):
-                    <InputTextArea @bind-Value="_starship.Description" />
+                    <InputTextArea @bind-Value="_starship.Description"/>
                 </label>
             </p>
             <p>
@@ -43,19 +43,19 @@
             <p>
                 <label>
                     Maximum Accommodation:
-                    <InputNumber @bind-Value="_starship.MaximumAccommodation" />
+                    <InputNumber @bind-Value="_starship.MaximumAccommodation"/>
                 </label>
             </p>
             <p>
                 <label>
                     Engineering Approval:
-                    <InputCheckbox @bind-Value="_starship.IsValidatedDesign" />
+                    <InputCheckbox @bind-Value="_starship.IsValidatedDesign"/>
                 </label>
             </p>
             <p>
                 <label>
                     Production Date:
-                    <InputDate @bind-Value="_starship.ProductionDate" />
+                    <InputDate @bind-Value="_starship.ProductionDate"/>
                 </label>
             </p>
 
@@ -67,9 +67,7 @@
 @code {
 
 
-
-
-    private Starship _starship = new Starship();
+    private readonly Starship _starship = new();
 
 
     private void HandleValidSubmit()

@@ -2,50 +2,52 @@
 @namespace AElemental.Components
 @inject IJSRuntime JSRuntime
 
-    <li class="tree-view-item">
-        <div class="tree-view-item-content">
-                
+<li class="tree-view-item">
+    <div class="tree-view-item-content">
+
         @if (hasChildren)
         {
             <div class="caret" @onclick="() => ToggleCollapsed.InvokeAsync(Root)">
-                <AeIcon Icon="@(IsCollapsed(Root)? "arrow-right-s" : "arrow-down-s")"></AeIcon>
+                <AeIcon Icon="@(IsCollapsed(Root) ? "arrow-right-s" : "arrow-down-s")"></AeIcon>
             </div>
-                 }
-            @if (!isGeneric)
+        }
+        @if (!isGeneric)
+        {
+            @if (isIcon)
             {
-                @if (isIcon)
-                {
-                    <div class="tree-view-icon">
-                        <AeIcon Icon="@nodeIcon"></AeIcon>
-                    </div>
-                } 
-                @if (isSelectable)
-                {
-                    <AeCheckbox Checked="@_isItemChecked" CheckedChanged="@CheckChanged" Indeterminate="_isIndeterminate"/>
-                }
-                <div class="tree-view-node-text @(NodeIsClickable(Root)? "clickable" : "") @(IsBold(Root)? "bold" : "")" @onclick="() => NodeClicked.InvokeAsync(Root)">
-                    @nodeString
+                <div class="tree-view-icon">
+                    <AeIcon Icon="@nodeIcon"></AeIcon>
                 </div>
             }
-            else {
-                @RenderItem(Root)
+            @if (isSelectable)
+            {
+                <AeCheckbox Checked="@_isItemChecked" CheckedChanged="@CheckChanged" Indeterminate="_isIndeterminate"/>
             }
+            <div class="tree-view-node-text @(NodeIsClickable(Root) ? "clickable" : "") @(IsBold(Root) ? "bold" : "")" @onclick="() => NodeClicked.InvokeAsync(Root)">
+                @nodeString
             </div>
-    </li>
+        }
+        else
+        {
+            @RenderItem(Root)
+        }
+    </div>
+</li>
 @if (hasChildren)
 {
     <ul class="nested @(IsCollapsed(Root) ? "" : "active")">
         @foreach (var child in children)
         {
             <TreeItem FetchChildren="FetchChildren" RenderNode="RenderNode" RenderIcon="RenderIcon" Root="child"
-            IsCollapsed="IsCollapsed" ToggleCollapsed="ToggleCollapsed" ItemChecked="ItemChecked"  IsChecked="IsChecked"
-            NodeClicked="NodeClicked" RenderItem="RenderItem" IsBold="IsBold" NodeIsClickable="NodeIsClickable"/>
+                      IsCollapsed="IsCollapsed" ToggleCollapsed="ToggleCollapsed" ItemChecked="ItemChecked" IsChecked="IsChecked"
+                      NodeClicked="NodeClicked" RenderItem="RenderItem" IsBold="IsBold" NodeIsClickable="NodeIsClickable"/>
         }
     </ul>
-    }
+}
 
 
 @code {
+
     [Parameter]
     public Func<T, IEnumerable<T>> FetchChildren { get; set; }
 
@@ -69,7 +71,7 @@
 
     [Parameter]
     public Func<T, bool> IsChecked { get; set; }
-    
+
     [Parameter]
     public Func<T, bool> IsIndeterminate { get; set; }
 
@@ -107,7 +109,6 @@
             isSelectable = true;
         }
         SetupPrivateProperties();
-
     }
 
     protected override void OnParametersSet()
@@ -121,13 +122,14 @@
     {
         if (RenderNode != null)
             nodeString = RenderNode(Root);
-        if (RenderIcon != null) {
+        if (RenderIcon != null)
+        {
             nodeIcon = RenderIcon(Root);
             isIcon = true;
         }
-        
+
         children = FetchChildren(Root);
-        hasChildren =  children != null && children.Any();
+        hasChildren = children != null && children.Any();
         isGeneric = RenderItem != null;
         if (IsChecked is not null)
         {

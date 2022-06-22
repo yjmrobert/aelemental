@@ -10,21 +10,21 @@
 *@
 
 <AeTable Accessors="accessorFunctions"
-       Dataset="data"
-       Headers="headers" 
-       AddToolTip="true"/>
+         Dataset="data"
+         Headers="headers"
+         AddToolTip="true"/>
 
 
 @code {
 
     // Define the headers at the top of the table
-    private List<string> headers = new List<string>
+    private List<string> headers = new()
     {
         "Message"
     };
 
     // Typeparam class to hold row data, can be anything
-    private List<string> data = new List<string>
+    private List<string> data = new()
     {
         "This is a long message number 1",
         "This is a much longer message number 2",
@@ -37,8 +37,9 @@
     };
 
     // Accessor functions to retrieve cell value
-    private List<Func<string, string>> accessorFunctions = new List<Func<string, string>>
+    private List<Func<string, string>> accessorFunctions = new()
     {
-        new Func<string, string>(item => { return item; })
+        item => { return item; }
     };
+
 }

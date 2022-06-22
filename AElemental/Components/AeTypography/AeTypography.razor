@@ -3,7 +3,7 @@
 
 @if (Variant == "h1")
 {
-    <h1 style="@_style" class="@_classname" @attributes="@InputAttributesWithoutClassOrStyle" >@ChildContent</h1>
+    <h1 style="@_style" class="@_classname" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h1>
 }
 else if (Variant == "h2")
 {
@@ -77,14 +77,15 @@ else
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyle("font-family", "var(--body-font)")
             .AddStyleFromAttributes(InputAttributes)
-            .NullIfEmpty();  
-        
+            .NullIfEmpty();
+
         _classname = new AeCssClassBuilder()
             .AddClassFromAttributes(InputAttributes)
             .NullIfEmpty();
     }
+
 }

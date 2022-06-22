@@ -1,10 +1,11 @@
 ﻿@use 'sass:math';
+
 $totalColumns: 12;
 
 @mixin columnMaxWidth($width) {
-    -ms-flex: 0 0 percentage(math.div($width, $totalColumns));
-    flex: 0 0 percentage(math.div($width, $totalColumns));
-    max-width: percentage(math.div($width, $totalColumns));
+  -ms-flex: 0 0 percentage(math.div($width, $totalColumns));
+  flex: 0 0 percentage(math.div($width, $totalColumns));
+  max-width: percentage(math.div($width, $totalColumns));
 }
 
 @mixin columnCommon {

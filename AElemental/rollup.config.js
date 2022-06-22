@@ -4,10 +4,10 @@ import typescript from '@rollup/plugin-typescript';
 
 export default {
     input: 'main.ts',
-    output: { file: "./wwwroot/aelemental.js", format: "esm" },
+    output: {file: "./wwwroot/aelemental.js", format: "esm"},
     plugins: [
         typescript(),
-        nodeResolve(), 
+        nodeResolve(),
         // scss({
         //     output: "./wwwroot/aelemental.css",
         //     outputStyle: "compressed"

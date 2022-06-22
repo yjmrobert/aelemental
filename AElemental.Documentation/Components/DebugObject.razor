@@ -1,17 +1,16 @@
 ﻿@using System.Reflection
-
-
 <AeTable Accessors="accessorFunctions"
-       Dataset="_PropertyInfos"
-       Headers="headers" />
+         Dataset="_PropertyInfos"
+         Headers="headers"/>
 
 
 @code {
+
     [Parameter]
-    public object Object { get; set;}
+    public object Object { get; set; }
 
     // Define the headers at the top of the table
-    private List<string> headers = new List<string>
+    private List<string> headers = new()
     {
         "Property", "Value"
     };
@@ -25,10 +24,10 @@
     {
         _PropertyInfos = Object.GetType().GetProperties().ToList();
         accessorFunctions = new List<Func<PropertyInfo, string>>
-    {
-        new Func<PropertyInfo, string>(prop => { return prop.Name; }),
-        new Func<PropertyInfo, string>(prop => { return Convert.ToString(prop.GetValue(Object, null) ?? "(null)"); })
-    };
+        {
+            prop => { return prop.Name; },
+            prop => { return Convert.ToString((string) (prop.GetValue(Object, null) ?? "(null)")); }
+        };
     }
 
     protected override void OnAfterRender(bool firstRender)

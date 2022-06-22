@@ -17,19 +17,18 @@
     Description: Form is generated from .NET object model. Standard form annotations are used, few others have been added to handle labels, order, etc.
 *@
 
-<AeModelForm 
+<AeModelForm
     Model="@_formField"
     SubmitLabel="Save Changes"
     OnValidSubmit="@HandleValidSubmit"
     CancelLabel="Cancel"
-    OnCancel="@CreateFormField"
-/>
+    OnCancel="@CreateFormField"/>
 
-<DebugObject Object="@_formField" />
+<DebugObject Object="@_formField"/>
 
 @code {
 
-    private FormField _formField = new FormField();
+    private FormField _formField = new();
 
     private async Task<FormField> CreateFormField()
     {
@@ -43,10 +42,6 @@
 
     private void HandleValidSubmit()
     {
-
     }
 
 }
-
-
-        

@@ -22,7 +22,6 @@ public class AeNavLinkInfo
     public List<AeNavLinkInfo> SubLinks { get; set; }
 }
 
-
 public class AeTopbarInfo
 {
     public string Title { get; set; }

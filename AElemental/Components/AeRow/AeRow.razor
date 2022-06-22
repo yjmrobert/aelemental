@@ -1,11 +1,11 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
-<div class="ae row @(Center? " center": "" ) @_inputClass">@ChildContent</div>
+<div class="ae row @(Center ? " center" : "") @_inputClass">@ChildContent</div>
 
 @code {
+
     [Parameter]
     public bool Center { get; set; }
+
 }

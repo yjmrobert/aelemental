@@ -1,43 +1,43 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 
 
-
-    
-<bx-dropdown 
+<bx-dropdown
     @onaedropdownselected="@HandleAeDropdownSelected"
     disabled="@Disabled"
     helper-text="@HelperText"
     label-text="@LabelText"
-    style="@_style" 
-    class="@_class" 
+    style="@_style"
+    class="@_class"
     value="@Value">
     @ChildContent
 </bx-dropdown>
 
 
 @code {
+
     [Parameter]
     public string? Value { get; set; }
+
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
     [Parameter]
     public string? LabelText { get; set; }
+
     [Parameter]
     public string? HelperText { get; set; }
+
     [Parameter]
     public bool Disabled { get; set; }
-    
+
     private string? _style;
     private string? _class;
-    
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyleFromAttributes(InputAttributes)
             .NullIfEmpty();
@@ -46,9 +46,10 @@
             .AddClassFromAttributes(InputAttributes)
             .NullIfEmpty();
     }
-    
+
     private async Task HandleAeDropdownSelected(AeDropdownSelectedEventArgs eventArgs)
     {
         await ValueChanged.InvokeAsync(eventArgs.Value);
     }
+
 }

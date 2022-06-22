@@ -24,10 +24,10 @@
              SubmitLabel="Save changes"
              OnValidSubmit="HandleValidSubmit"
              IsReadOnly="!submitEnabled"
-             CancelLabel="Cancel"    
+             CancelLabel="Cancel"
              IsSubmitEnabled="submitEnabled"
              OnConfigure="OnConfigure"
-             OnCancel="CreateStarship" />
+             OnCancel="CreateStarship"/>
 
 <DebugObject Object="@_starship"/>
 
@@ -36,7 +36,7 @@
 
     private async Task<InteractiveStarship> CreateStarship()
     {
-        return await Task.FromResult(new InteractiveStarship() { ProductionDate = DateTime.Today });
+        return await Task.FromResult(new InteractiveStarship {ProductionDate = DateTime.Today});
     }
 
     private bool submitEnabled;
@@ -55,24 +55,23 @@
         _starship.Classification = "b";
         _starship.SubClassification = "b3";
         _starship.Description = "This is a Sharship2. It has 4 engines and can go from 0 to light speed in 3 seconds. It has an automatic sheild deploy, free wifi and a vending machine. It sleeps 10 crew, but if you are optimistic, you can get 12 in there. When it comes to food, there is a garden wing, where we grow spinach, carrots, lettuce, tomatoes, potatoes and other such vegatables. Sadly, all the meat has to be synthetic since we quite willingly destroyed our home planet and have chosen to not be cannibals.";
-        
     }
 
     private async Task OnConfigure(IModelFormContext context)
     {
-        context.RegisterOptionValueProperty<InteractiveStarship>(s => s.Classification,() => new[] { "a", "b", "c" }, _ => context.RefreshOptions<InteractiveStarship>(s => s.SubClassification));
+        context.RegisterOptionValueProperty<InteractiveStarship>(s => s.Classification, () => new[] {"a", "b", "c"}, _ => context.RefreshOptions<InteractiveStarship>(s => s.SubClassification));
         context.RegisterOptionValueProperty<InteractiveStarship>(s => s.SubClassification, ValidSubClassifications);
     }
-    
+
     private IEnumerable<string> ValidSubClassifications()
     {
-        if (_starship.Classification is null) return new[] { "a?", "b?", "c?" };
-        return new[] { _starship.Classification + "1", _starship.Classification + "2", _starship.Classification + "3" };   
+        if (_starship.Classification is null) return new[] {"a?", "b?", "c?"};
+        return new[] {_starship.Classification + "1", _starship.Classification + "2", _starship.Classification + "3"};
     }
 
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

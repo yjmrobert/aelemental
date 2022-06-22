@@ -1,5 +1,5 @@
-﻿using Microsoft.JSInterop;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 //This is used to get the height and width of whatever element is supplied
 //await Service.GetDimensions(SomeElementReference);
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class GetDimensionsService
 {
-    private IJSRuntime _js;
+    private readonly IJSRuntime _js;
 
     public GetDimensionsService(IJSRuntime js)
     {
@@ -19,11 +19,11 @@ public class GetDimensionsService
     {
         return await _js.InvokeAsync<ElementDimension>("getDimensions", element);
     }
+
     public async Task<ElementPosition> GetPosition(object element)
     {
         return await _js.InvokeAsync<ElementPosition>("getPosition", element);
     }
-
 }
 
 public class ElementDimension

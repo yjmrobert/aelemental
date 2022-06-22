@@ -1,13 +1,11 @@
-﻿
-
-@inherits HtmlInputElement
+﻿@inherits HtmlInputElement
 @namespace AElemental.Components
 
 
 <div class="@_classname" @attributes="InputAttributesWithoutClass">
     <div class="ae search-bar">
         <i class="@_searchIconClassname"></i>
-        <input class="ae input search" type="text" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder" />
+        <input class="ae input search" type="text" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" placeholder="@Placeholder"/>
         <i class="@_clearIconClassname" @onclick="ClearSearch"></i>
     </div>
 </div>
@@ -16,6 +14,7 @@
 
     [Parameter]
     public string SearchIconFAClass { get; set; } = "fas fa-search";
+
     [Parameter]
     public string ClearIconFAClass { get; set; } = "fas fa-times";
 
@@ -29,4 +28,5 @@
         _inputValue = "";
         OnTimerFire(null, null);
     }
+
 }

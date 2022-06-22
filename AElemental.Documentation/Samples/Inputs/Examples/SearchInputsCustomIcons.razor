@@ -11,12 +11,11 @@
 
 <AeTypography>Search value (500ms delay): @_searchValue</AeTypography>
 
-<AeSearchInput 
+<AeSearchInput
     Placeholder="Search..."
-    OnInputChange="HandleSearch" 
-    SearchIconFAClass="fas fa-birthday-cake" 
-    ClearIconFAClass="fas fa-coffee"
-/>
+    OnInputChange="HandleSearch"
+    SearchIconFAClass="fas fa-birthday-cake"
+    ClearIconFAClass="fas fa-coffee"/>
 
 
 @code {
@@ -28,4 +27,5 @@
         _searchValue = newValue;
         StateHasChanged();
     }
+
 }

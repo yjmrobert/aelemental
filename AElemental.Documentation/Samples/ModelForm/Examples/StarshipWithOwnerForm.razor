@@ -22,9 +22,9 @@
              Model="@_starship"
              SubmitLabel="Save changes"
              OnValidSubmit="HandleValidSubmit"
-             CancelLabel="Cancel"             
+             CancelLabel="Cancel"
              OnConfigure="OnConfigure"
-             OnCancel="CreateStarship" />
+             OnCancel="CreateStarship"/>
 
 <DebugObject Object="@_starship"/>
 
@@ -33,9 +33,8 @@
 
     private async Task<StarshipWithOwner> CreateStarship()
     {
-        return await Task.FromResult(new StarshipWithOwner() { ProductionDate = DateTime.Today });
+        return await Task.FromResult(new StarshipWithOwner {ProductionDate = DateTime.Today});
     }
-
 
 
     protected override async Task OnInitializedAsync()
@@ -47,16 +46,18 @@
 
     private async Task OnConfigure(IModelFormContext context)
     {
-        context.RegisterOptionValueProperty<StarshipWithOwner>(s => s.Classification,() => new[] { "a", "b", "c" });
-        context.RegisterOptionValueProperty<StarshipWithOwner,StarshipOwner>(p => p.Owner, s => s?.OwnerName??"N/A", 
-                () => new List<StarshipOwner>() { null, new() {  OwnerID = 1, OwnerName ="Joe"},
-                new() { OwnerID = 2, OwnerName = "Brian" } });
-
+        context.RegisterOptionValueProperty<StarshipWithOwner>(s => s.Classification, () => new[] {"a", "b", "c"});
+        context.RegisterOptionValueProperty<StarshipWithOwner, StarshipOwner>(p => p.Owner, s => s?.OwnerName ?? "N/A",
+            () => new List<StarshipOwner>
+            {
+                null, new() {OwnerID = 1, OwnerName = "Joe"},
+                new() {OwnerID = 2, OwnerName = "Brian"}
+            });
     }
-    
+
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

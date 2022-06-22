@@ -6,8 +6,8 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 *@
 
-@inherits LayoutComponentBase
 @using AElemental.Code
+@inherits LayoutComponentBase
 
 <AeLayoutV2 Links="_navLinks">
     @*<TopNavigation>Top Nav</TopNavigation>*@
@@ -31,7 +31,6 @@
         </AeFlex>
     </ChildContent>
 </AeLayoutV2>
-
 
 
 @*<AeLayout>
@@ -60,10 +59,10 @@
 
 @code {
 
-    private List<AeNavLink> _navLinks = new List<AeNavLink>
+    private List<AeNavLink> _navLinks = new()
     {
-        new AeNavLink{ Label = "Home", To = "/", IconName = "function", IconStyle = RxIcon.RxStyle.Fill, IconClassName = "blue" },
-        @* new AeNavLink {Label = "Components", IconName = "focus", IconClassName = "orange", ChildLinks = new List<AeNavLink>()
+        new() {Label = "Home", To = "/", IconName = "function", IconStyle = RxIcon.RxStyle.Fill, IconClassName = "blue"},
+    @* new AeNavLink {Label = "Components", IconName = "focus", IconClassName = "orange", ChildLinks = new List<AeNavLink>()
         {
             new AeNavLink{ Label = "Navbar", To = "/navbar", IconName = "focus", IconStyle = RXIcon.RXStyle.Fill },
             new AeNavLink{ Label = "Buttons", To = "/buttons", IconName = "focus", IconStyle = RXIcon.RXStyle.Fill },
@@ -93,7 +92,7 @@
             new AeNavLink{ Label = "Sidebar", To = "/layoutWithSidebar", IconName = "focus", IconStyle = RXIcon.RXStyle.Fill },
 
         } } *@
-        new AeNavLink { Label = "Form Fields", To = "/formfields", IconName = "focus" }
+        new() {Label = "Form Fields", To = "/formfields", IconName = "focus"}
     };
 
 }

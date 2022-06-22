@@ -1,5 +1,4 @@
-﻿
-@inherits HtmlInputElement
+﻿@inherits HtmlInputElement
 @namespace AElemental.Components
 @using System.Threading
 @typeparam T 
@@ -8,13 +7,13 @@
 <div class="@_classname" @attributes="InputAttributesWithoutClass">
     <div class="ae search-bar">
         <i class="@_searchIconClassname"></i>
-        <input class="ae input search" type="text" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp" 
-        placeholder="@Placeholder" @onfocusin="@(() => _searchIsActive = true)" @onfocusout="OnFocusOut"/>
+        <input class="ae input search" type="text" @bind-value="_inputValue" @bind-value:event="oninput" @onkeyup="HandleKeyUp"
+               placeholder="@Placeholder" @onfocusin="@(() => _searchIsActive = true)" @onfocusout="OnFocusOut"/>
         <i class="@_clearIconClassname" @onclick="ClearSearch"></i>
     </div>
     <div class="@_searchResultsClassname">
         <div class="ae search-border"></div>
-        @foreach(var result in SearchResults.Take(MaxResultsToDisplay))
+        @foreach (var result in SearchResults.Take(MaxResultsToDisplay))
         {
             <div class="ae search-result" @onclick="async () => await OnResultSelected.InvokeAsync(result)">
                 @if (GetRenderFragment == null)
@@ -26,7 +25,7 @@
                 {
                     @GetRenderFragment(result)
                 }
-            </div>         
+            </div>
         }
     </div>
 </div>
@@ -35,22 +34,28 @@
 
     [Parameter]
     public string SearchIconFAClass { get; set; } = "fas fa-search";
+
     [Parameter]
     public string ClearIconFAClass { get; set; } = "fas fa-times";
+
     [Parameter]
     public string SearchResultIconFAClass { get; set; } = "fas fa-search";
+
     [Parameter]
     public EventCallback<T> OnResultSelected { get; set; }
+
     [Parameter]
     public int MaxResultsToDisplay { get; set; } = 10;
+
     [Parameter]
     public List<T> SearchResults { get; set; } = new();
+
     [Parameter]
     public Func<T, RenderFragment> GetRenderFragment { get; set; }
 
 
     private string _classname => $"ae search-wrapper {_inputClass}";
-    private string _searchResultsClassname => $"ae search-results {(SearchResults.Count > 0 && _searchIsActive ? "visible": "")}";
+    private string _searchResultsClassname => $"ae search-results {(SearchResults.Count > 0 && _searchIsActive ? "visible" : "")}";
     private string _searchIconClassname => $"{SearchIconFAClass} ae search-icon";
     private string _clearIconClassname => $"{ClearIconFAClass} ae clear-icon {(_inputValue?.Length > 0 ? "visible" : "")}";
     private string _searchResultIcon => $"{SearchResultIconFAClass} ae search-result-icon";
@@ -64,7 +69,7 @@
 
     private void OnFocusOut(FocusEventArgs e)
     {
-        //TODO: find a better solution for hanling results click - probably JS
+    //TODO: find a better solution for hanling results click - probably JS
         new Thread(() =>
         {
             Thread.Sleep(250);

@@ -14,39 +14,45 @@
  * limitations under the License.
  */
 
-using Microsoft.AspNetCore.Components;
 using System;
+using Microsoft.AspNetCore.Components;
 
-namespace AElemental.Code
+namespace AElemental.Code;
+
+public class NonGenericTreeView<T> : TreeView<T>
 {
-    public class NonGenericTreeView<T>: TreeView<T>
+    [Parameter] public Func<T, string> RenderNode { get; set; }
+
+    [Parameter] public EventCallback<T> NodeClicked { get; set; }
+
+    [Parameter] public Func<T, bool> IsBold { get; set; }
+
+    [Parameter] public Func<T, bool> NodeIsClickable { get; set; }
+
+
+    protected override void OnInitialized()
     {
-        [Parameter]
-        public Func<T, string> RenderNode { get; set; }
+        base.OnInitialized();
+        if (!NodeClicked.HasDelegate)
+            NodeClicked = new EventCallback<T>(this, (Action<T>) nodeClicked);
+        if (IsBold == null)
+            IsBold = isBold;
+        if (NodeIsClickable == null)
+            NodeIsClickable = isClickable;
+    }
 
-        [Parameter]
-        public EventCallback<T> NodeClicked { get; set; }
+    private void nodeClicked(T root)
+    {
+        /*do nothing*/
+    }
 
-        [Parameter]
-        public Func<T, bool> IsBold { get; set; }
+    private bool isBold(T root)
+    {
+        return false;
+    }
 
-        [Parameter]
-        public Func<T, bool> NodeIsClickable { get; set; }
-
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-            if (!NodeClicked.HasDelegate)
-                NodeClicked = new EventCallback<T>(this, (Action<T>)nodeClicked);
-            if (IsBold == null)
-                IsBold = isBold;
-            if (NodeIsClickable == null)
-                NodeIsClickable = isClickable;
-        }
-
-        private void nodeClicked(T root) {/*do nothing*/}
-        private bool isBold(T root) { return false; }
-        private bool isClickable(T root) { return true; }
+    private bool isClickable(T root)
+    {
+        return true;
     }
 }

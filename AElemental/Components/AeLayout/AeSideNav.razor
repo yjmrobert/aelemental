@@ -8,8 +8,8 @@
         {
             if (item.SubLinks != null && item.SubLinks.Any())
             {
-                <bx-side-nav-menu title="@item.Name" 
-                                  active="@(_currentUrl?.Trim('/').StartsWith(item.Url?.Trim('/') ?? ""))" 
+                <bx-side-nav-menu title="@item.Name"
+                                  active="@(_currentUrl?.Trim('/').StartsWith(item.Url?.Trim('/') ?? ""))"
                                   expanded="@(_currentUrl?.Trim('/').StartsWith(item.Url?.Trim('/') ?? ""))">
                     @if (item.Icon != null)
                     {
@@ -58,7 +58,7 @@
 
     [Parameter]
     public IEnumerable<AeLayoutNavLink>? Links { get; set; }
-    
+
     private string? _style;
     private string? _currentUrl;
 
@@ -71,7 +71,7 @@
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        
+
         _style = new AeStyleBuilder()
             .AddStyle("margin-top", Layout!.TopMargin)
             .AddStyle("height", $"calc(100% - {Layout!.TopMargin})")
@@ -80,6 +80,6 @@
 
         _currentUrl = _navigationManager.ToBaseRelativePath(_navigationManager.Uri);
     }
-    
-    
+
+
 }

@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AElemental.Services
-{ 
-    public interface IExcelContentParser
-    {
-        String ValidMimeType { get; }
+namespace AElemental.Services;
 
-        public Boolean CanParse(String mimeType) => ValidMimeType.Equals(mimeType, StringComparison.InvariantCultureIgnoreCase);
-        Task<IList<String[]>> GetRows(String input);
+public interface IExcelContentParser
+{
+    string ValidMimeType { get; }
+
+    public bool CanParse(string mimeType)
+    {
+        return ValidMimeType.Equals(mimeType, StringComparison.InvariantCultureIgnoreCase);
     }
+
+    Task<IList<string[]>> GetRows(string input);
 }

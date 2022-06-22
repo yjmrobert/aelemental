@@ -1,4 +1,5 @@
-﻿@*
+﻿@using System.Threading
+@*
     Copyright (c) 2021 Apption Corporation
 
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,21 +11,22 @@
 *@
 
 <AeSteps T="int" CurrentStepState="GetState" StepItems="steps" Alignment="AeSteps<int>.StepAlignment.Horizontal"
-         StepTitle="StepTitle" StepMessage="StepMessage"></AeSteps>
+         StepTitle="StepTitle" StepMessage="StepMessage">
+</AeSteps>
 @*For demo only*@
 <AeButton Disabled="@disbaleRunAgain" OnClickEvent="OnRunAgain">Run Again</AeButton>
 
 @code {
 
 
-    public List<int> steps = new List<int> { 1, 2, 3, 4 };
+    public List<int> steps = new() {1, 2, 3, 4};
 
-    public Dictionary<int, AeSteps<int>.StepState> stepStates = new Dictionary<int, AeSteps<int>.StepState>
+    public Dictionary<int, AeSteps<int>.StepState> stepStates = new()
     {
-        { 1, AeSteps<int>.StepState.Queued },
-        { 2, AeSteps<int>.StepState.Queued },
-        { 3, AeSteps<int>.StepState.Queued },
-        { 4, AeSteps<int>.StepState.Queued }
+        {1, AeSteps<int>.StepState.Queued},
+        {2, AeSteps<int>.StepState.Queued},
+        {3, AeSteps<int>.StepState.Queued},
+        {4, AeSteps<int>.StepState.Queued}
     };
 
     public string StepTitle(int i)
@@ -65,10 +67,10 @@
         disbaleRunAgain = true;
         stepStates = new Dictionary<int, AeSteps<int>.StepState>
         {
-            { 1, AeSteps<int>.StepState.Queued },
-            { 2, AeSteps<int>.StepState.Queued },
-            { 3, AeSteps<int>.StepState.Queued },
-            { 4, AeSteps<int>.StepState.Queued }
+            {1, AeSteps<int>.StepState.Queued},
+            {2, AeSteps<int>.StepState.Queued},
+            {3, AeSteps<int>.StepState.Queued},
+            {4, AeSteps<int>.StepState.Queued}
         };
         StateHasChanged();
     }
@@ -85,10 +87,10 @@
     {
         runAgainRequested = false;
         await InvokeAsync(() => StateHasChanged());
-        Random r = new Random();
-        for (int i = 0; i <= stepStates.Count; i++)
+        var r = new Random();
+        for (var i = 0; i <= stepStates.Count; i++)
         {
-            System.Threading.Thread.Sleep(1500);
+            Thread.Sleep(1500);
             if (i != 0)
             {
                 if (r.Next(2) == 0)
@@ -103,6 +105,6 @@
         }
         disbaleRunAgain = false;
         await InvokeAsync(() => StateHasChanged());
-
     }
+
 }

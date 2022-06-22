@@ -1,4 +1,5 @@
-﻿@*
+﻿@using AElemental.Services
+@*
     Copyright (c) 2020 Apption Corporation
 
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,16 +9,16 @@
     Title: Override modal
     Description: Completely override the modal
 *@
-@using AElemental.Services
 @inject UIControlsService UIControlService
 
 <AeButton @onclick="@ShowModal">Show Modal</AeButton>
 
-@code {    
-    private List<string> _choiceList = new List<string>() { "Choice 1", "Choice 2", "Choice 3" };
+@code {
+    private List<string> _choiceList = new() {"Choice 1", "Choice 2", "Choice 3"};
+
     private void ShowModal()
     {
-        RenderFragment modalContent = @<UserChoiceModal ChoiceTextList="_choiceList" OnDecision="e => UIControlService.ToggleModal()" HeaderText="Default" />;
+        RenderFragment modalContent = @<UserChoiceModal ChoiceTextList="_choiceList" OnDecision="e => UIControlService.ToggleModal()" HeaderText="Default"/>;
         //var modalParameter = new Elemental.Code.ModalParameter() { Class = "modal", Content = modalContent, DisableBackgroundCancel = false };
         UIControlService.ToggleModal(modalContent);
     }

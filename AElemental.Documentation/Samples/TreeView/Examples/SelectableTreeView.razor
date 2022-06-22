@@ -11,7 +11,7 @@
   Description: A tree view that replaces icons with checkboxes with three states
 *@
 <AeTreeViewSelectable
-    T="PlaceholderItem" 
+    T="PlaceholderItem"
     Roots="_roots"
     FetchChildren="GetChildren"
     RenderNode="RenderNode"
@@ -22,7 +22,7 @@
 
 <div>
     <div>Json Item:</div>
-    @JsonSerializer.Serialize(_roots, new JsonSerializerOptions()
+    @JsonSerializer.Serialize(_roots, new JsonSerializerOptions
     {
         ReferenceHandler = ReferenceHandler.IgnoreCycles,
         WriteIndented = true
@@ -36,12 +36,14 @@
     {
         return root.Children;
     }
-    
-    private bool IsChecked(PlaceholderItem item){
+
+    private bool IsChecked(PlaceholderItem item)
+    {
         return item.IsChecked;
     }
-    
-    private bool IsIndeterminate(PlaceholderItem item){
+
+    private bool IsIndeterminate(PlaceholderItem item)
+    {
         return item.IsIndeterminate;
     }
 
@@ -62,7 +64,7 @@
     {
         if (placeholderItem.Children == null)
             return;
-        
+
         foreach (var item in placeholderItem.Children)
         {
             item.IsChecked = placeholderItem.IsChecked;
@@ -76,10 +78,10 @@
         if (parent == null)
             return;
 
-        // TODO: Optimize this check
+    // TODO: Optimize this check
         parent.IsChecked = AllChildrenChecked(parent);
         parent.IsIndeterminate = !parent.IsChecked && parent.Children.Any(x => x.IsChecked);
-        
+
         UpdateParents(parent);
     }
 
@@ -113,14 +115,6 @@
 
     public class PlaceholderItem
     {
-        private int Id { get; set; }
-        public string Name { get; set; }
-        public string Icon { get; set; }
-        public bool IsChecked { get; set; }
-        public bool IsIndeterminate { get; set; }
-        public List<PlaceholderItem> Children { get; set; }
-        public PlaceholderItem Parent { get; set; }
-
         public PlaceholderItem(int id, string name, string icon, bool isChecked, List<PlaceholderItem> children)
         {
             Id = id;
@@ -129,6 +123,14 @@
             IsChecked = isChecked;
             Children = children;
         }
+
+        private int Id { get; set; }
+        public string Name { get; set; }
+        public string Icon { get; set; }
+        public bool IsChecked { get; set; }
+        public bool IsIndeterminate { get; set; }
+        public List<PlaceholderItem> Children { get; set; }
+        public PlaceholderItem Parent { get; set; }
 
         public override bool Equals(object obj)
         {

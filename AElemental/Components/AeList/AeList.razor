@@ -1,6 +1,4 @@
-﻿
-
-@namespace AElemental.Components
+﻿@namespace AElemental.Components
 @inherits HtmlElement
 @*
     @using Microsoft.AspNetCore.Components.Routing;
@@ -21,9 +19,11 @@
 </ul>
 
 @code{
+
     [Parameter]
     public List<string> Items { get; set; }
-    @*[Parameter]
+
+        @*[Parameter]
         public List<AeListds> itemList { get; set; } = new List<AeListds>();
     *@
 
