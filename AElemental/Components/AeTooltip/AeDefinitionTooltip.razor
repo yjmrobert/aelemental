@@ -1,0 +1,44 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace AElemental.Components
+@inherits HtmlElement
+
+<bx-tooltip-definition 
+  style="@_style"
+  class="@_class"
+  alignment="@Alignment" 
+  body-text="@BodyText" 
+  direction="@Direction">
+  @ChildContent
+</bx-tooltip-definition>
+
+@code {
+
+  [Parameter]
+  public string ZIndex { get; set; } = "10000";
+  
+  [Parameter]
+  public string? BodyText { get; set; }
+
+  [Parameter]
+  public string Alignment { get; set; } = AeTooltip.Alignments.Center;
+  
+  [Parameter]
+  public string Direction { get; set; } = AeTooltip.Directions.Bottom;
+  
+  private string? _style;
+  private string? _class;
+
+  protected override void OnParametersSet()
+  {
+    base.OnParametersSet();
+
+    _style = new AeStyleBuilder()
+      .AddStyle("z-index", ZIndex)
+      .AddStyleFromAttributes(InputAttributes)
+      .NullIfEmpty();
+
+    _class = new AeCssClassBuilder()
+      .AddClassFromAttributes(InputAttributes)
+      .NullIfEmpty();
+  }
+}

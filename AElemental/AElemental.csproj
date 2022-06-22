@@ -31,12 +31,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.4.0"/>
-        <PackageReference Include="Markdig" Version="0.28.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="FluentValidation" Version="10.4.0" />
+        <PackageReference Include="Markdig" Version="0.28.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -45,18 +45,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="$(PackageIconFullPath)" Pack="true" PackagePath="\"/>
-        <None Include="wwwroot\js\third-party\jquery.min.js"/>
+        <None Include="$(PackageIconFullPath)" Pack="true" PackagePath="\" />
+        <None Include="wwwroot\js\third-party\jquery.min.js" />
         <None Include="wwwroot\js\third-party\shepherd.min.js">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
     <ItemGroup>
-        <TypeScriptCompile Include="Components\AeButton\AeButton.ts"/>
-        <TypeScriptCompile Include="Components\AeCheckbox\AeCheckbox.ts"/>
-        <TypeScriptCompile Include="Components\AeDropdown\AeDropdown.ts"/>
-        <TypeScriptCompile Include="Components\AeSelect\AeSelect.ts"/>
+        <TypeScriptCompile Include="Components\AeButton\AeButton.ts" />
+        <TypeScriptCompile Include="Components\AeCheckbox\AeCheckbox.ts" />
+        <TypeScriptCompile Include="Components\AeDropdown\AeDropdown.ts" />
+        <TypeScriptCompile Include="Components\AeSelect\AeSelect.ts" />
     </ItemGroup>
 </Project>
 

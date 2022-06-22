@@ -15,23 +15,23 @@
     </ItemGroup>
 
     <ItemGroup>
-        <UpToDateCheckInput Include="Styles/**/*.scss" Set="Css"/>
-        <UpToDateCheckBuilt Include="wwwroot/css/*.css" Set="Css"/>
+        <UpToDateCheckInput Include="Styles/**/*.scss" Set="Css" />
+        <UpToDateCheckBuilt Include="wwwroot/css/*.css" Set="Css" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-        <UpToDateCheckBuilt Remove="wwwroot\css\elemental-docs.min.css"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <UpToDateCheckBuilt Remove="wwwroot\css\elemental-docs.min.css" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Samples\**"/>
+        <EmbeddedResource Include="Samples\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AElemental\AElemental.csproj"/>
+        <ProjectReference Include="..\AElemental\AElemental.csproj" />
     </ItemGroup>
 
     <ItemGroup>
