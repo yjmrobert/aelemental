@@ -1,13 +1,28 @@
 ﻿@page "/components/tooltip"
+@using AElemental.Documentation.Samples.Tooltip.Examples
 @inherits DemoPage
 
     
-<DemoSection Path="./Samples/Tooltip/Examples/BasicTooltip.razor">
-    <AElemental.Documentation.Samples.Tooltip.Examples.BasicTooltip/>
-</DemoSection>
+@foreach (var razor in _tooltipDemos)
+{
+    <DynamicComponent Type="razor" />
+}
+@* <DemoSection Path="./Samples/Tooltip/Examples/BasicTooltip.razor"> *@
+@*     <AElemental.Documentation.Samples.Tooltip.Examples.BasicTooltip/> *@
+@* </DemoSection> *@
+@* *@
+@* *@
+@* <DemoSection Path="./Samples/Tooltip/Examples/TooltipDirections.razor"> *@
+@*     $1$ <AElemental.Documentation.Samples.Tooltip.Examples.BasicTooltip/> #1# *@
+@*     <AElemental.Documentation.Samples.Tooltip.Examples.TooltipDirections/> *@
+@* </DemoSection> *@
 
 
-<DemoSection Path="./Samples/Tooltip/Examples/TooltipDirections.razor">
-    @* <AElemental.Documentation.Samples.Tooltip.Examples.BasicTooltip/> *@
-    <AElemental.Documentation.Samples.Tooltip.Examples.TooltipDirections/>
-</DemoSection>
+@code {
+
+    private readonly List<Type> _tooltipDemos = new()
+    {
+        nameof(BasicTooltip),
+        "TooltipDirections",
+    };
+}
