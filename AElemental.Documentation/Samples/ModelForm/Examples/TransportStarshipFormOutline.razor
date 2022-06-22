@@ -17,11 +17,11 @@
     Description: This sample uses Category annotations to group and order the different form elements into categories as well as creating an outline for the categories
 *@
 
-<AeModelForm 
-    Model="@_starship" 
-    SubmitLabel="Save changes" 
-    OnValidSubmit="HandleValidSubmit" 
-    CancelLabel="Cancel" 
+<AeModelForm
+    Model="@_starship"
+    SubmitLabel="Save changes"
+    OnValidSubmit="HandleValidSubmit"
+    CancelLabel="Cancel"
     OnCancel="CreateStarship"
     EnableOutline="true"
     OutlineStyle="width: 250px;"/>
@@ -34,7 +34,7 @@
 
     private async Task<TransportStarship> CreateStarship()
     {
-        return await Task.FromResult(new TransportStarship() { ProductionDate = DateTime.Today });
+        return await Task.FromResult(new TransportStarship {ProductionDate = DateTime.Today});
     }
 
     protected override async Task OnInitializedAsync()
@@ -44,7 +44,7 @@
 
     private void HandleValidSubmit()
     {
-        //do something if form is valid
+    //do something if form is valid
         StateHasChanged();
     }
 

@@ -1,8 +1,7 @@
 export function setIndeterminate(checkboxElement, indeterminate) {
-    if(checkboxElement){
+    if (checkboxElement) {
         checkboxElement.indeterminate = indeterminate;
-    }
-    else {
+    } else {
         console.warn("Checkbox element is null");
     }
 }

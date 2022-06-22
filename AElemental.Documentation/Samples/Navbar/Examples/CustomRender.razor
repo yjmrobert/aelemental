@@ -10,28 +10,28 @@
 *@
 
 
-<AeNavbar Links="_navLinks" RightLinks="GetRightNavLinks()" />
+<AeNavbar Links="_navLinks" RightLinks="GetRightNavLinks()"/>
 
 
 @code {
 
-    private List<AeNavLink> _navLinks = new List<AeNavLink>
+    private List<AeNavLink> _navLinks = new()
     {
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "Home",
+            Label = "Home"
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "News",
+            Label = "News"
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "Blog",
-        },
+            Label = "Blog"
+        }
     };
 
 
@@ -39,17 +39,18 @@
     {
         return new List<AeNavLink>
         {
-            new AeNavLink()
+            new()
             {
-                CustomRender = (@<div class="custom-navlink"><AeButton>Click me!</AeButton></div>)
+                CustomRender = (@<div class="custom-navlink">
+                                    <AeButton>Click me!</AeButton>
+                                </div>)
             },
-            new AeNavLink()
+            new()
             {
                 To = "#",
-                Label = "Contact",
-            },
+                Label = "Contact"
+            }
         };
     }
+
 }
-
-

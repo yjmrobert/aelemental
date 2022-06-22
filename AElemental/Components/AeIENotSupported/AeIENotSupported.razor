@@ -15,12 +15,12 @@
 *@
 
 @namespace AElemental.Components
-@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Http
 @inherits HtmlElement
 @inject IHttpContextAccessor HttpContextAccessor
 
 
-<div class="@(_classname) @(_browserIsInternetExplorer || OverrideBrowserCheck? "show-message" : "")">
+<div class="@(_classname) @(_browserIsInternetExplorer || OverrideBrowserCheck ? "show-message" : "")">
     <div class="ie-not-supported-message-wrapper">
         <div class="ie-not-supported-icon">
             @Icon
@@ -45,7 +45,7 @@
     public bool OverrideBrowserCheck { get; set; }
 
     [Parameter]
-    public RenderFragment Icon { get; set; } =@<AeIcon Icon="error-warning" Size="10x"></AeIcon>;
+    public RenderFragment Icon { get; set; } = @<AeIcon Icon="error-warning" Size="10x"></AeIcon>;
 
     [Parameter]
     public string Title { get; set; } = "This website requires a modern browser.";
@@ -55,8 +55,8 @@
 
     protected override void OnInitialized()
     {
-            if (!OverrideBrowserCheck && HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Request.IsInternetExplorer())
-                _browserIsInternetExplorer = true;
+        if (!OverrideBrowserCheck && HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Request.IsInternetExplorer())
+            _browserIsInternetExplorer = true;
     }
 
 }

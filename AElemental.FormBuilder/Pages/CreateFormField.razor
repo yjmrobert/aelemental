@@ -1,8 +1,9 @@
 ﻿@page "/formfields/new"
-@inject Code.IFormFieldRepository Repo
+@using AElemental.FormBuilder.Code
+@inject IFormFieldRepository Repo
 @inject NavigationManager NavManager
 
-@if(_formField == null)
+@if (_formField == null)
 {
     <h3>Please Wait</h3>
 }
@@ -15,8 +16,7 @@ else
         SubmitLabel="Save Changes"
         OnValidSubmit="@HandleValidSubmit"
         CancelLabel="Reset"
-        OnCancel="@DoCreateFormField"
-    />
+        OnCancel="@DoCreateFormField"/>
 }
 
 <AeButton To="/formfields">Back</AeButton>
@@ -39,4 +39,5 @@ else
         _formField = await Repo.AddFormField(_formField);
         NavManager.NavigateTo($"/formfields/view/{_formField.FormFieldID}");
     }
+
 }

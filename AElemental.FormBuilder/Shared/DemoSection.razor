@@ -24,7 +24,7 @@
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">C#</AeTypography>
                     <div class="code-wrapper">
-                        <pre style="margin: 0"><code class="language-csharp">@(string.Join(System.Environment.NewLine, file.AdditionalCode))</code></pre>
+                        <pre style="margin: 0"><code class="language-csharp">@string.Join(Environment.NewLine, file.AdditionalCode)</code></pre>
                     </div>
                 }
 
@@ -32,21 +32,21 @@
                 {
                     <AeTypography style="margin-top: 0;" Variant="h4">Markup</AeTypography>
                     <div class="code-wrapper">
-                        <pre style="margin: 0"><code class="language-html">@(string.Join(System.Environment.NewLine, file.Html))</code></pre>
+                        <pre style="margin: 0"><code class="language-html">@string.Join(Environment.NewLine, file.Html)</code></pre>
                     </div>
                 }
                 @if (file.Code.Count > 0)
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">C#</AeTypography>
                     <div class="code-wrapper">
-                        <pre style="margin: 0"><code class="language-csharp">@(string.Join(System.Environment.NewLine, file.Code))</code></pre>
+                        <pre style="margin: 0"><code class="language-csharp">@string.Join(Environment.NewLine, file.Code)</code></pre>
                     </div>
                 }
                 @if (file.Scss?.Count > 0)
                 {
                     <AeTypography style="margin-top: .75rem;" Variant="h4">SCSS</AeTypography>
                     <div class="code-wrapper">
-                        <pre style="margin: 0"><code class="language-scss">@(string.Join(System.Environment.NewLine, file.Scss))</code></pre>
+                        <pre style="margin: 0"><code class="language-scss">@string.Join(Environment.NewLine, file.Scss)</code></pre>
                     </div>
                 }
             </AeFlex>
@@ -59,8 +59,10 @@ else
 }
 
 @code {
+
     [Parameter]
     public string Path { get; set; }
+
     [Parameter]
     public string AdditionalCS { get; set; }
 
@@ -73,4 +75,5 @@ else
     {
         file = new ParsedFile(Path, AdditionalCS);
     }
+
 }

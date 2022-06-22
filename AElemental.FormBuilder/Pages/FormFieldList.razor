@@ -1,24 +1,23 @@
 ﻿@page "/formfields"
-@using System.Linq
-@inject Code.IFormFieldRepository Repo;
+@using AElemental.FormBuilder.Code
+@inject IFormFieldRepository Repo;
 
 <h3>Form Fields</h3>
 
 @* <a href="/formfields/new" class="btn btn-success"><AeIcon Icon="add-circle" IconStyle="Elemental.Code.RXIcon.RXStyle.Fill" /> Add Form Field</a> *@
 
 <AeButton To="/formfields/new" class="blue">
-    <AeIcon Icon="add-circle" IconStyle="AElemental.Code.RXIcon.RXStyle.Fill" />
+    <AeIcon Icon="add-circle" IconStyle="AElemental.Code.RXIcon.RXStyle.Fill"/>
     Create New Form Field
 </AeButton>
 
 @if (_formFields != null && _formFields.Count() > 0)
 {
-    <AeTable 
+    <AeTable
         Accessors="accessorFunctions"
         Renderers="renderFunctions"
         Dataset="@_formFields"
-        Headers="@headers"
-    />
+        Headers="@headers"/>
 
 
     <h4>JSON</h4>
@@ -42,26 +41,25 @@
             }
         </code>
     </pre>
-    
 }
 
-@code 
+@code
 {
 
-    private List<string> headers = new List<string>()
+    private readonly List<string> headers = new()
     {
         "Section", "Field", "Field Type", "Extension"
     };
 
-    private List<Func<FormField, string>> accessorFunctions = new List<Func<FormField, string>>()
+    private readonly List<Func<FormField, string>> accessorFunctions = new()
     {
-        (f => f.Section),
-        (f => f.Field),
-        (f => f.FieldType),
-        (f => f.ExtensionLabel)
+        f => f.Section,
+        f => f.Field,
+        f => f.FieldType,
+        f => f.ExtensionLabel
     };
 
-    private List<Func<FormField, RenderFragment>> renderFunctions = new List<Func<FormField, RenderFragment>>()
+    private readonly List<Func<FormField, RenderFragment>> renderFunctions = new()
     {
         null,
         (f => @<a href=@($"/formfields/view/{f.FormFieldID}")>@f.Field</a>),
@@ -69,7 +67,7 @@
         null
     };
 
-    private List<FormField> _formFields = new List<FormField>();
+    private List<FormField> _formFields = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -78,4 +76,3 @@
     }
 
 }
-

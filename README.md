@@ -18,7 +18,6 @@
 
 _Speed up your web projects with Blazor_
 
-
 ## 🎉 Features
 
 - Modern Functional APIs
@@ -31,8 +30,7 @@ _Speed up your web projects with Blazor_
 
 ## 🌈 Online Examples
 
-
-- [demo site](https://aelemental.z13.web.core.windows.net/) 
+- [demo site](https://aelemental.z13.web.core.windows.net/)
 
 ![Table image](docs/images/Table.png)
 

@@ -14,7 +14,7 @@
     <Brand>
         <a class="ae typography nav-logo-wrapper" href="https://www.apption.com">
             <div class="nav-logo">
-                <img src="/img/apption-logo-white.svg" />
+                <img src="/img/apption-logo-white.svg"/>
             </div>
         </a>
     </Brand>
@@ -23,19 +23,18 @@
 
 @code {
 
-    private List<AeNavLink> _navLinks = new List<AeNavLink>
+    private List<AeNavLink> _navLinks = new()
     {
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "Home",
+            Label = "Home"
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "News",
-        },
+            Label = "News"
+        }
     };
+
 }
-
-

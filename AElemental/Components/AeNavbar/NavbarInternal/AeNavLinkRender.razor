@@ -14,7 +14,7 @@
             @Link.Label
             @if (IsDropdownLabel)
             {
-                <i class="fas fa-caret-down"  style="margin-left: .75rem;"/>
+                <i class="fas fa-caret-down" style="margin-left: .75rem;"/>
             }
         </AeTypography>
     }
@@ -24,10 +24,13 @@
 
     [Parameter]
     public bool IsDropdownLabel { get; set; }
+
     [Parameter]
     public AeNavLink Link { get; set; }
+
     [Parameter]
     public EventCallback CloseNav { get; set; }
+
     [Parameter]
     public EventCallback ToggleDropDown { get; set; }
 

@@ -11,68 +11,69 @@
 
 <AeTable Accessors="accessorFunctions"
          Dataset="dummyData"
-         SimpleTable="true" />
-<br />
+         SimpleTable="true"/>
+<br/>
 
 <AeTable Accessors="accessorFunctions"
          Dataset="dummyData"
          Headers="headers"
-         SimpleTable="true" 
+         SimpleTable="true"
          CustomRowLabels="@customLabel"/>
 
 
 @code {
 
-//Defined Custom Row label Render Fragment
-Func<int, RenderFragment> customLabel = (row) =>
-{
-    if (row % 2 == 0)
+    //Defined Custom Row label Render Fragment
+    Func<int, RenderFragment> customLabel = (row) =>
     {
-        return @<img src="https://via.placeholder.com/30x25">;
-    }
-    else
+        if (row % 2 == 0)
+        {
+            return @<img src="https://via.placeholder.com/30x25">;
+        }
+        else
+        {
+            return @<div class="ae table-cell row-label">@(row)</div>;
+        }
+    };
+
+    // Define the headers at the top of the table
+    private List<string> headers = new List<string>
     {
-        return @<div class="ae table-cell row-label">@(row)</div>;
+        "Type", "Category", "Location", "Importance", "Icon"
+    };
+
+    // Typeparam class to hold row data, can be anything
+    private List<DummyData> dummyData = new List<DummyData>
+    {
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance"}
+    };
+
+    // Accessor functions to retrieve cell value
+    private List<Func<DummyData, string>> accessorFunctions = new List<Func<DummyData, string>>
+    {
+        new Func<DummyData, string>(dummyData => { return dummyData.Type; }),
+        new Func<DummyData, string>(dummyData => { return dummyData.Category; }),
+        new Func<DummyData, string>(dummyData => { return dummyData.Location; }),
+        new Func<DummyData, string>(dummyData => { return dummyData.Importance.ToString(); }),
+        new Func<DummyData, string>(dummyData => { return dummyData.CategoryIconClass; })
+    };
+
+    class DummyData
+    {
+        public string Type { get; set; }
+        public string Category { get; set; }
+        public string CategoryIconClass { get; set; }
+        public string Location { get; set; }
+        public int Importance { get; set; }
     }
-};
 
-// Define the headers at the top of the table
-private List<string> headers = new List<string>
-{
-    "Type", "Category", "Location", "Importance", "Icon"
-};
-
-// Typeparam class to hold row data, can be anything
-private List<DummyData> dummyData = new List<DummyData>
-{
-    new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-    new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-    new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-    new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-    new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number" },
-    new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-    new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-    new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-    new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
-    new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
-};
-
-// Accessor functions to retrieve cell value
-private List<Func<DummyData, string>> accessorFunctions = new List<Func<DummyData, string>>
-{
-    new Func<DummyData, string>(dummyData => { return dummyData.Type; }),
-    new Func<DummyData, string>(dummyData => { return dummyData.Category; }),
-    new Func<DummyData, string>(dummyData => { return dummyData.Location; }),
-    new Func<DummyData, string>(dummyData => { return dummyData.Importance.ToString(); }),
-    new Func<DummyData, string>(dummyData => { return dummyData.CategoryIconClass; })
-};
-
-class DummyData
-{
-    public string Type { get; set; }
-    public string Category { get; set; }
-    public string CategoryIconClass { get; set; }
-    public string Location { get; set; }
-    public int Importance { get; set; }
-}
 }

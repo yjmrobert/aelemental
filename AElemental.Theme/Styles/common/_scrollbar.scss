@@ -10,18 +10,18 @@
 @use 'constants';
 
 $scrollbarOptions: (
-  '&::-webkit-scrollbar': (
-    'width': 0.25rem,
-  ),
-  '&::-webkit-scrollbar-track': (
-    'background': colors.$grey-200,
-    'border-radius': 8px,
-  ),
-  '&::-webkit-scrollbar-thumb': (
-    'background': colors.$grey-500,
-    'border-radius': 8px,
-    '&:hover': (
-      'background': colors.$grey-600,
-    ),
-  ),
+        '&::-webkit-scrollbar': (
+                'width': 0.25rem,
+        ),
+        '&::-webkit-scrollbar-track': (
+                'background': colors.$grey-200,
+                'border-radius': 8px,
+        ),
+        '&::-webkit-scrollbar-thumb': (
+                'background': colors.$grey-500,
+                'border-radius': 8px,
+                '&:hover': (
+                        'background': colors.$grey-600,
+                ),
+        ),
 );

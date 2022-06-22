@@ -10,10 +10,10 @@
 *@
 
 <AeTypography Variant="p">Default delay (500ms): @_defaultDelay</AeTypography>
-<AeInput Placeholder="Search..." OnInputChange="HandleDefaultInputChange" />
+<AeInput Placeholder="Search..." OnInputChange="HandleDefaultInputChange"/>
 
 <AeTypography Variant="p">Custom delay (100ms): @_customDelay</AeTypography>
-<AeInput Placeholder="Search..." OnInputChange="HandleCustomInputChange" EventTimer="100" />
+<AeInput Placeholder="Search..." OnInputChange="HandleCustomInputChange" EventTimer="100"/>
 
 @code {
 
@@ -31,4 +31,5 @@
         _customDelay = newValue;
         StateHasChanged();
     }
+
 }

@@ -10,10 +10,10 @@
 *@
 
 <AeTable Accessors="accessorFunctions"
-       Renderers="renderFunctions"
-       ColorAccessor="colorFunction"
-       Dataset="dummyData"
-       Headers="headers" />
+         Renderers="renderFunctions"
+         ColorAccessor="colorFunction"
+         Dataset="dummyData"
+         Headers="headers"/>
 
 
 @code {
@@ -27,16 +27,16 @@
     // Typeparam class to hold row data, can be anything
     private List<DummyData> dummyData = new List<DummyData>
     {
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance"},
+        new DummyData {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance"}
     };
 
     // Accessor functions to retrieve cell value
@@ -44,15 +44,18 @@
     {
         new Func<DummyData, string>(dummyData => { return dummyData.Type; }),
         new Func<DummyData, string>(dummyData => { return dummyData.Category; }),
-        new Func<DummyData, string>(dummyData => { return dummyData.Location; }),
+        new Func<DummyData, string>(dummyData => { return dummyData.Location; })
     };
 
     // [Optional] Can define custom rendering for columns, order matters
     private List<Func<DummyData, RenderFragment>> renderFunctions = new List<Func<DummyData, RenderFragment>>
     {
         null,
-        new Func<DummyData, RenderFragment>(dummyData => { return @<i class="@dummyData.CategoryIconClass"></i>; }),
-        null,
+        new Func<DummyData, RenderFragment>(dummyData =>
+        {
+            return @<i class="@dummyData.CategoryIconClass"></i>;
+        }),
+        null
     };
 
     // [Optional] Can define custom colors per row
@@ -80,4 +83,5 @@
         public string Location { get; set; }
         public int Importance { get; set; }
     }
+
 }

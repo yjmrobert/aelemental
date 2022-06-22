@@ -1,11 +1,11 @@
 .shepherd-element {
     background: #F8F8F8;
     border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
     max-width: 350px;
     opacity: 0;
     outline: none;
-    transition: opacity .3s,visibility .3s;
+    transition: opacity .3s, visibility .3s;
     visibility: hidden;
     width: 100%;
     z-index: 9999;
@@ -33,11 +33,11 @@
     z-index: -1
 }
 
-    .shepherd-arrow:before {
-        content: "";
-        transform: rotate(45deg);
-        background: #F8F8F8
-    }
+.shepherd-arrow:before {
+    content: "";
+    transform: rotate(45deg);
+    background: #F8F8F8
+}
 
 .shepherd-element[data-popper-placement^=top] > .shepherd-arrow {
     bottom: -8px
@@ -77,20 +77,20 @@
     pointer-events: none;
     position: fixed;
     top: 0;
-    transition: all .3s ease-out,height 0ms .3s,opacity .3s 0ms;
+    transition: all .3s ease-out, height 0ms .3s, opacity .3s 0ms;
     width: 100vw;
     z-index: 9997
 }
 
-    .shepherd-modal-overlay-container.shepherd-modal-is-visible {
-        height: 100vh;
-        opacity: .5;
-        transition: all .3s ease-out,height 0s 0s,opacity .3s 0s
-    }
+.shepherd-modal-overlay-container.shepherd-modal-is-visible {
+    height: 100vh;
+    opacity: .5;
+    transition: all .3s ease-out, height 0s 0s, opacity .3s 0s
+}
 
-        .shepherd-modal-overlay-container.shepherd-modal-is-visible path {
-            pointer-events: all
-        }
+.shepherd-modal-overlay-container.shepherd-modal-is-visible path {
+    pointer-events: all
+}
 
 .shepherd-content {
     border-radius: 5px;
@@ -106,9 +106,9 @@
     padding: 0 .75rem .75rem
 }
 
-    .shepherd-footer .shepherd-button:last-child {
-        margin-right: 0
-    }
+.shepherd-footer .shepherd-button:last-child {
+    margin-right: 0
+}
 
 .shepherd-header {
     align-items: center;
@@ -126,54 +126,54 @@
 }
 
 .shepherd-text {
-    color: rgba(0,0,0,.75);
+    color: rgba(0, 0, 0, .75);
     font-size: 1rem;
     line-height: 1.3em;
     padding: .75em
 }
 
-    .shepherd-text p {
-        margin-top: 0
-    }
+.shepherd-text p {
+    margin-top: 0
+}
 
-        .shepherd-text p:last-child {
-            margin-bottom: 0
-        }
+.shepherd-text p:last-child {
+    margin-bottom: 0
+}
 
 .shepherd-button {
     background: #3288e6;
     border: 0;
     border-radius: 3px;
-    color: hsla(0,0%,100%,.75);
+    color: hsla(0, 0%, 100%, .75);
     cursor: pointer;
     margin-right: .5rem;
     padding: .5rem 1.5rem;
     transition: all .5s ease
 }
 
-    .shepherd-button:not(:disabled):hover {
-        background: #196fcc;
-        color: hsla(0,0%,100%,.75)
-    }
+.shepherd-button:not(:disabled):hover {
+    background: #196fcc;
+    color: hsla(0, 0%, 100%, .75)
+}
 
-    .shepherd-button.shepherd-button-secondary {
-        background: #f1f2f3;
-        color: rgba(0,0,0,.75)
-    }
+.shepherd-button.shepherd-button-secondary {
+    background: #f1f2f3;
+    color: rgba(0, 0, 0, .75)
+}
 
-        .shepherd-button.shepherd-button-secondary:not(:disabled):hover {
-            background: #d6d9db;
-            color: rgba(0,0,0,.75)
-        }
+.shepherd-button.shepherd-button-secondary:not(:disabled):hover {
+    background: #d6d9db;
+    color: rgba(0, 0, 0, .75)
+}
 
-    .shepherd-button:disabled {
-        cursor: not-allowed
-    }
+.shepherd-button:disabled {
+    cursor: not-allowed
+}
 
 .shepherd-cancel-icon {
     background: transparent;
     border: none;
-    color: hsla(0,0%,50.2%,.75);
+    color: hsla(0, 0%, 50.2%, .75);
     font-size: 2em;
     cursor: pointer;
     font-weight: 400;
@@ -182,17 +182,17 @@
     transition: color .5s ease
 }
 
-    .shepherd-cancel-icon:hover {
-        color: hsla(0,0%,50.2%,.75);
-    }
-
-.shepherd-has-title .shepherd-content .shepherd-cancel-icon {
-    color: rgba(0,0,0,.75);
+.shepherd-cancel-icon:hover {
+    color: hsla(0, 0%, 50.2%, .75);
 }
 
-    .shepherd-has-title .shepherd-content .shepherd-cancel-icon:hover {
-        color: hsla(0,0%,50.2%,.75);
-    }
+.shepherd-has-title .shepherd-content .shepherd-cancel-icon {
+    color: rgba(0, 0, 0, .75);
+}
+
+.shepherd-has-title .shepherd-content .shepherd-cancel-icon:hover {
+    color: hsla(0, 0%, 50.2%, .75);
+}
 
 .shepherd-title {
     color: white;

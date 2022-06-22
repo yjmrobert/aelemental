@@ -53,10 +53,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="Components\AeButton\AeButton.ts" />
-      <TypeScriptCompile Include="Components\AeCheckbox\AeCheckbox.ts" />
-      <TypeScriptCompile Include="Components\AeDropdown\AeDropdown.ts" />
-      <TypeScriptCompile Include="Components\AeSelect\AeSelect.ts" />
+        <TypeScriptCompile Include="Components\AeButton\AeButton.ts" />
+        <TypeScriptCompile Include="Components\AeCheckbox\AeCheckbox.ts" />
+        <TypeScriptCompile Include="Components\AeDropdown\AeDropdown.ts" />
+        <TypeScriptCompile Include="Components\AeSelect\AeSelect.ts" />
     </ItemGroup>
 </Project>
 

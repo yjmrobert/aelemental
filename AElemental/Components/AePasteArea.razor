@@ -1,6 +1,4 @@
-﻿@using AElemental.Components.PasteAreaInternal;
-
-
+﻿@using AElemental.Components.PasteAreaInternal
 <PasteAwareComponent OnContentPasted="FillTable">
     @if (_excelContent.Any() == false)
     {
@@ -11,25 +9,27 @@
     else
     {
         <AeTable Accessors="pasteAccessors"
-                    Dataset="_excelContent"
-                    SimpleTable="true">
+                 Dataset="_excelContent"
+                 SimpleTable="true">
         </AeTable>
 
-            
-        <AeButton Text="Import" Icon="fal fa-arrow-left" @onclick="e => ImportRecords()" />
-        <AeButton Text="Cancel Import" Icon="far fa-plus-square" @onclick="e => CancelImport()" />            
+
+        <AeButton Text="Import" Icon="fal fa-arrow-left" @onclick="e => ImportRecords()"/>
+        <AeButton Text="Cancel Import" Icon="far fa-plus-square" @onclick="e => CancelImport()"/>
     }
 </PasteAwareComponent>
+
 @code {
 
     [Parameter]
-    public EventCallback<List<String[]>> ExcelContent { get; set; }
+    public EventCallback<List<string[]>> ExcelContent { get; set; }
+
     [Parameter]
     public EventCallback CancelPaste { get; set; }
 
-    private List<String[]> _excelContent = new List<String[]>();
-    private List<Func<String[], string>> pasteAccessors = new List<Func<String[], string>>();
-    
+    private List<string[]> _excelContent = new();
+    private List<Func<string[], string>> pasteAccessors = new();
+
 
     private Task ImportRecords()
     {
@@ -47,16 +47,16 @@
     private async Task PopulateAccessors()
     {
         var totalColumns = _excelContent[0].Length;
-        for (int i = 0; i < totalColumns; i++)
+        for (var i = 0; i < totalColumns; i++)
         {
             var headerNumber = i + 1;
-            int j = i;
-            var func = new Func<String[], string>(p => { return p[j]; });
+            var j = i;
+            var func = new Func<string[], string>(p => { return p[j]; });
             pasteAccessors.Add(func);
         }
     }
 
-    private async Task FillTable(IEnumerable<IDictionary<String, String>> content)
+    private async Task FillTable(IEnumerable<IDictionary<string, string>> content)
     {
         pasteAccessors.Clear();
         _excelContent.Clear();
@@ -78,7 +78,7 @@
             var parsedList = await parser.GetRows(item.Value);
             _excelContent = parsedList.ToList();
             await PopulateAccessors();
-
         }
     }
+
 }

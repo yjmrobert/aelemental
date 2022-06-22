@@ -10,23 +10,23 @@
 *@
 
 <AeButton style="margin-bottom:1rem" class="red" @onclick="UpdateProgress">Add Progress</AeButton>
-<AeProgress Percent=@_progress showPercent=true />
+<AeProgress Percent="@_progress" showPercent="true"/>
 
 @code {
-  private int _progress = 0;
+    private int _progress = 0;
 
-  private void UpdateProgress()
-  {
-    if(_progress >= 100)
+    private void UpdateProgress()
     {
-      _progress = 0;
-    }
-    else
-    {
-      _progress += 10;
+        if (_progress >= 100)
+        {
+            _progress = 0;
+        }
+        else
+        {
+            _progress += 10;
+        }
+
+        StateHasChanged();
     }
 
-    StateHasChanged();
-  }
 }
-

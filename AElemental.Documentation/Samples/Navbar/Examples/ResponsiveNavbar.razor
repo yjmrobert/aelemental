@@ -14,7 +14,7 @@
     <Brand>
         <a class="ae typography nav-logo-wrapper" href="https://www.apption.com">
             <div class="nav-logo">
-                <img src="/img/apption-logo-white.svg" />
+                <img src="/img/apption-logo-white.svg"/>
             </div>
         </a>
     </Brand>
@@ -23,68 +23,67 @@
 
 @code {
 
-    private List<AeNavLink> _navLinks = new List<AeNavLink>
+    private List<AeNavLink> _navLinks = new()
     {
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "Home",
+            Label = "Home"
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
-            Label = "News",
+            Label = "News"
         },
-        new AeNavLink()
+        new()
         {
             Label = "Dropdown",
-            ChildLinks = new List<AeNavLink>()
+            ChildLinks = new List<AeNavLink>
             {
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 1"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 2"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 3"
-                },
+                }
             }
         },
-        new AeNavLink()
+        new()
         {
             Label = "Dropdown2",
-            ChildLinks = new List<AeNavLink>()
+            ChildLinks = new List<AeNavLink>
             {
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 4"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 5"
                 },
-                new AeNavLink()
+                new()
                 {
                     To = null,
                     Label = "Link 6"
-                },
+                }
             }
         },
-        new AeNavLink()
+        new()
         {
             To = "#",
             Label = "Contact"
         }
     };
+
 }
-
-

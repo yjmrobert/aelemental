@@ -9,14 +9,14 @@
   Description: Basic example of a tree view.
 *@
 <div>
-  <AeTreeViewIcon T="string" Roots="_roots" FetchChildren="GetChildren" RenderIcon="RenderIcon" RenderNode="RenderNode"
-  NodeClicked="NodeClicked"/>
+    <AeTreeViewIcon T="string" Roots="_roots" FetchChildren="GetChildren" RenderIcon="RenderIcon" RenderNode="RenderNode"
+                    NodeClicked="NodeClicked"/>
 </div>
 <div class="treeview-clicked">Last item clicked <span>@_lastItemClicked</span></div>
 
 @code {
     private string _lastItemClicked;
-    public List<string> _roots = new List<string>(new string[] { "server1", "server2", "server3" });
+    public List<string> _roots = new(new[] {"server1", "server2", "server3"});
 
     public List<string> GetChildren(string root)
     {
@@ -30,30 +30,33 @@
             objectType = "field";
         else if (root.Contains("field"))
             return returnList;
-        for (int i=1; i<=3; i++)
+        for (var i = 1; i <= 3; i++)
         {
             returnList.Add(objectType + i);
         }
         return returnList;
     }
 
-    public string RenderNode(string root){
+    public string RenderNode(string root)
+    {
         return root;
     }
 
     private void NodeClicked(string item)
-        {
-            _lastItemClicked = item;
-            StateHasChanged();
-        }
+    {
+        _lastItemClicked = item;
+        StateHasChanged();
+    }
 
-    public string RenderIcon(string root){
+    public string RenderIcon(string root)
+    {
         if (root.Contains("server"))
             return "server";
-        else if (root.Contains("database"))
+        if (root.Contains("database"))
             return "database-2";
-        else if (root.Contains("table"))
+        if (root.Contains("table"))
             return "table";
         return "price-tag";
     }
+
 }

@@ -14,28 +14,29 @@
  * limitations under the License.
  */
 
-namespace AElemental.Code
-{
-    public class PageStatus
-    {
-        /// <summary>
-        /// Start from 1
-        /// </summary>
-        public int CurrentPage { get; set; }
-        /// <summary>
-        /// Number of pages
-        /// </summary>
-        public int PageCount { get; set; }
-        /// <summary>
-        /// Number of items inside a page
-        /// </summary>
-        public int PageSize { get; set; }
+namespace AElemental.Code;
 
-        public PageStatus (int pageCount, int pagesize)
-        {
-            CurrentPage = 1;
-            PageCount = pageCount;
-            PageSize = pagesize;
-        }
+public class PageStatus
+{
+    public PageStatus(int pageCount, int pagesize)
+    {
+        CurrentPage = 1;
+        PageCount = pageCount;
+        PageSize = pagesize;
     }
+
+    /// <summary>
+    ///     Start from 1
+    /// </summary>
+    public int CurrentPage { get; set; }
+
+    /// <summary>
+    ///     Number of pages
+    /// </summary>
+    public int PageCount { get; set; }
+
+    /// <summary>
+    ///     Number of items inside a page
+    /// </summary>
+    public int PageSize { get; set; }
 }

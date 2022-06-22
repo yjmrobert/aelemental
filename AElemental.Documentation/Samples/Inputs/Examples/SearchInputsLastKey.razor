@@ -11,7 +11,7 @@
 
 <AeTypography>Perform search after Enter key pressed: @_searchValue</AeTypography>
 
-<AeSearchInput Placeholder="Search..." OnInputChangeWithLastKey="HandleSearch" />
+<AeSearchInput Placeholder="Search..." OnInputChangeWithLastKey="HandleSearch"/>
 
 
 @code {
@@ -24,6 +24,7 @@
         {
             _searchValue = newValue;
             StateHasChanged();
-        }   
+        }
     }
+
 }

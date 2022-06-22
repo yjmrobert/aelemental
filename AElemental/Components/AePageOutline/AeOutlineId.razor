@@ -14,13 +14,16 @@
 
 
 @code {
+
     [Parameter]
     public List<(string Id, RenderFragment ChildContent)> Anchors { get; set; }
+
     private string _Classname => $"ae outline-wrapper {_inputClass}";
 
     private async Task Scroll(string id)
     {
-        if (String.IsNullOrEmpty(id)) throw new ArgumentNullException("id was null / empty");
-        await JSRuntime.InvokeVoidAsync(("ScrollPosFromId"), id);
+        if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id was null / empty");
+        await JSRuntime.InvokeVoidAsync("ScrollPosFromId", id);
     }
+
 }

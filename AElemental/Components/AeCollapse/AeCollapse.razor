@@ -33,12 +33,12 @@
 
     private string _classname => $"ae collapse {_inputClass}";
 
-    public Dictionary<AeCollapseSection, bool> Sections = new Dictionary<AeCollapseSection, bool>();
+    public Dictionary<AeCollapseSection, bool> Sections = new();
 
     internal void AddSection(AeCollapseSection section)
     {
         var open = section.DefaultOpen;
-        if(Accordion && open)
+        if (Accordion && open)
         {
             open = !Sections.Values.Any(s => s);
         }
@@ -48,14 +48,15 @@
 
     public async Task ToggleSection(AeCollapseSection section)
     {
-        if(Accordion)
+        if (Accordion)
         {
-            foreach(var s in Sections.Keys.ToList()){
-              if(Sections[s] && s != section){
-                Sections[s] = false;
-              }
+            foreach (var s in Sections.Keys.ToList())
+            {
+                if (Sections[s] && s != section)
+                {
+                    Sections[s] = false;
+                }
             }
-
         }
 
         Sections[section] = !Sections[section];
@@ -64,4 +65,5 @@
 
         StateHasChanged();
     }
+
 }

@@ -1,6 +1,5 @@
 namespace AElemental.Components;
 
-public partial class AeModelForm
+public class AeModelForm
 {
-    
 }

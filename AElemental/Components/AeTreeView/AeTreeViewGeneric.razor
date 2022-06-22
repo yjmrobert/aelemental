@@ -16,13 +16,13 @@
 
         @foreach (var item in Roots)
         {
-
             <TreeItem T="T" FetchChildren="FetchChildren" Root="item" RenderItem="RenderItem" IsCollapsed="IsCollapsed" ToggleCollapsed="ToggleCollapsed"/>
         }
     </ul>
 }
 
 @code {
+
     [Parameter]
     public Func<T, RenderFragment> RenderItem { get; set; }
 

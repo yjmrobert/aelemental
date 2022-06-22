@@ -8,7 +8,8 @@
 
 
 @page "/"
-@inject Code.IFormFieldRepository Repo;
+@using AElemental.FormBuilder.Code
+@inject IFormFieldRepository Repo;
 
 <p>Welcome to Form Builder</p>
 
@@ -19,7 +20,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
     }
 
 }

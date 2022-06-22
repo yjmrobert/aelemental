@@ -1,17 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Threading.Tasks;
 
-namespace AElemental.FormBuilder.Shared
+namespace AElemental.FormBuilder.Shared;
+
+public class DemoPage : ComponentBase
 {
-    public class DemoPage : ComponentBase
-    {
-        [Inject]
-        IJSRuntime JSRuntime { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync("initHighlight");
-        }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("initHighlight");
     }
 }

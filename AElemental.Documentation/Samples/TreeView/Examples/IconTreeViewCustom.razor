@@ -9,20 +9,21 @@
   Description: A tree view that uses custom collapse methods and highlight methods and sets specific nodes bold.
 *@
 <div>
-  <AeTreeViewIcon T="Item" Roots="_roots" FetchChildren="GetChildren" RenderNode="RenderNode" IsCollapsed="IsCollapsed"
-                  ToggleCollapsed="ToggleCollapsed" IsBold="IsBold" RenderIcon="RenderIcon" NodeIsClickable="IsClickable"/>
+    <AeTreeViewIcon T="Item" Roots="_roots" FetchChildren="GetChildren" RenderNode="RenderNode" IsCollapsed="IsCollapsed"
+                    ToggleCollapsed="ToggleCollapsed" IsBold="IsBold" RenderIcon="RenderIcon" NodeIsClickable="IsClickable"/>
 </div>
 
 
 @code {
-    private List<Item> _roots = new List<Item>();
+    private List<Item> _roots = new();
 
     public List<Item> GetChildren(Item root)
     {
         return root.children;
     }
 
-    public string RenderNode(Item item){
+    public string RenderNode(Item item)
+    {
         return item.name;
     }
 
@@ -45,6 +46,7 @@
     {
         return item.isBold;
     }
+
     public bool IsClickable(Item item)
     {
         return item.isClickable;
@@ -65,33 +67,33 @@
         database3.isBold = true;
         table1.isClickable = true;
         database3.isClickable = true;
-        _roots.AddRange(new[] { server1, server2 });
+        _roots.AddRange(new[] {server1, server2});
     }
 
     public class Item
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string icon{ get; set; }
-        public bool isCollapsed{ get; set; }
-        public List<Item> children {  get;  set; }
-        public Item parent{ get; set; }
-        public bool isBold { get; set; }
-        public bool isClickable { get; set; }
-
-        public Item(int id, string name, string icon, bool isCollapsed, List<Item> children){
+        public Item(int id, string name, string icon, bool isCollapsed, List<Item> children)
+        {
             this.id = id;
             this.name = name;
             this.icon = icon;
             this.isCollapsed = isCollapsed;
-            this.children =  children;
+            this.children = children;
         }
+
+        public int id { get; set; }
+        public string name { get; set; }
+        public string icon { get; set; }
+        public bool isCollapsed { get; set; }
+        public List<Item> children { get; set; }
+        public Item parent { get; set; }
+        public bool isBold { get; set; }
+        public bool isClickable { get; set; }
 
         public override bool Equals(object obj)
         {
-            return this.id.Equals((obj as Item)?.id);
+            return id.Equals((obj as Item)?.id);
         }
-
     }
 
 }

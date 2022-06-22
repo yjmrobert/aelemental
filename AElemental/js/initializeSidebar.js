@@ -1,5 +1,5 @@
 ﻿window.initializeSidebar = {
-    
+
     initialize: (ref) => {
         ref.addEventListener('mouseover', function () {
             if (document.querySelector('.ae.side-nav').clientWidth <= 56) {
@@ -7,12 +7,12 @@
                 ref.querySelector('span').style.top = Math.floor(rect.top) + 'px';
                 ref.querySelector('span').classList.add("show");
             }
-        }); 
+        });
         ref.addEventListener('mouseout', function () {
             if (document.querySelector('.ae.side-nav').clientWidth <= 56) {
                 ref.querySelector('span').classList.remove("show");
             }
-        }); 
+        });
     },
 
     getInnerHeight: function () {
@@ -28,7 +28,7 @@
         //DotNet.invokeMethod("BrowserResize", 'OnBrowserResize');
         DotNet.invokeMethodAsync("Elemental", 'OnBrowserResize').then(data => data);
     }
-   
+
 }
 
 

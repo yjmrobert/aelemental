@@ -1,10 +1,11 @@
+using System;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace AElemental.Theme;
 
-[System.AttributeUsage(System.AttributeTargets.Property)] 
-public class AeCssVariableAttribute : System.Attribute
+[AttributeUsage(AttributeTargets.Property)]
+public class AeCssVariableAttribute : Attribute
 {
     public readonly string AeCssVariable;
 

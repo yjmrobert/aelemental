@@ -11,20 +11,20 @@
 
 <AeTypography>Selected Row Data:</AeTypography>
 <AeTypography>@_type, @_category, @_location</AeTypography>
-<br />
+<br/>
 <AeTypography Variant="h4">On Click Callback Table</AeTypography>
 <AeTable Accessors="accessorFunctions"
          Dataset="dummyData"
          Headers="headers"
          T="DummyData"
-         OnRowClick="@testCall" />
-<br />
+         OnRowClick="@testCall"/>
+<br/>
 <AeTypography Variant="h4">On Focus Callback Table</AeTypography>
 <AeTable Accessors="accessorFunctions"
          Dataset="dummyData"
          Headers="headers"
          T="DummyData"
-         OnRowFocus="@testCall" />
+         OnRowFocus="@testCall"/>
 
 
 @code {
@@ -42,32 +42,32 @@
     }
 
     // Define the headers at the top of the table
-    private List<string> headers = new List<string>
-{
+    private List<string> headers = new()
+    {
         "Type", "Category", "Location"
     };
 
     // Typeparam class to hold row data, can be anything
-    private List<DummyData> dummyData = new List<DummyData>
-{
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Hashtag", CategoryIconClass="fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
-        new DummyData { Category = "Dollar", CategoryIconClass="fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance" },
+    private List<DummyData> dummyData = new()
+    {
+        new() {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new() {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new() {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new() {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 0, Location = "FILESYSTEM", Type = "Number"},
+        new() {Category = "Hashtag", CategoryIconClass = "fa fa-hashtag", Importance = 1, Location = "FILESYSTEM", Type = "Number"},
+        new() {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 1, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new() {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 2, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new() {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/COSTS", Type = "Finance"},
+        new() {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 0, Location = "SQLDEV_1/PROFITS", Type = "Finance"},
+        new() {Category = "Dollar", CategoryIconClass = "fa fa-dollar-sign", Importance = 3, Location = "SQLDEV_1/PROFITS", Type = "Finance"}
     };
 
     // Accessor functions to retrieve cell value
-    private List<Func<DummyData, string>> accessorFunctions = new List<Func<DummyData, string>>
-{
-        new Func<DummyData, string>(dummyData => { return dummyData.Type; }),
-        new Func<DummyData, string>(dummyData => { return dummyData.Category; }),
-        new Func<DummyData, string>(dummyData => { return dummyData.Location; }),
+    private List<Func<DummyData, string>> accessorFunctions = new()
+    {
+        dummyData => { return dummyData.Type; },
+        dummyData => { return dummyData.Category; },
+        dummyData => { return dummyData.Location; }
     };
 
     class DummyData
@@ -78,4 +78,5 @@
         public string Location { get; set; }
         public int Importance { get; set; }
     }
+
 }

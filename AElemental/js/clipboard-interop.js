@@ -1,7 +1,9 @@
 ﻿window.BlazorClipboadInterop = window.BlazorClipboadInterop || {};
 
 window.BlazorClipboadInterop.ListeningForPasteEvents = function (element, dotNetObject) {
-    element.addEventListener('paste', function (e) { BlazorClipboadInterop.pasteEvent(e, dotNetObject) });
+    element.addEventListener('paste', function (e) {
+        BlazorClipboadInterop.pasteEvent(e, dotNetObject)
+    });
 };
 
 const toBase64 = file => new Promise((resolve, reject) => {
@@ -30,8 +32,7 @@ window.BlazorClipboadInterop.pasteEvent =
                     if (type.startsWith("text") == true) {
                         const content = await blob.text();
                         item[type] = content;
-                    }
-                    else {
+                    } else {
                         item[type] = await toBase64(blob);
                     }
                 }

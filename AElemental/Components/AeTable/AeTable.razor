@@ -32,7 +32,7 @@
             }
             @foreach (var (header, index) in Headers.Select((h, index) => (h, index)))
             {
-                @if (@CustomHeader != null)
+                @if (CustomHeader != null)
                 {
                     @CustomHeader(header, index)
                 }
@@ -45,52 +45,50 @@
     }
     <div class="ae table-scroll" style="@_scrollStyle" @onscroll="OnScroll" @ref="tableRef">
         <div class="ae table-rows" style="@_rowsStyle">
-            @foreach (var row in Rows.Skip(scrollViewResult.SkipItems).Take(scrollViewResult.TakeItems).Select((item, i) => new { item, i }))
+            @foreach (var row in Rows.Skip(scrollViewResult.SkipItems).Take(scrollViewResult.TakeItems).Select((item, i) => new {item, i}))
             {
-            <AeTableRow 
-                GridStyle="@_gridStyle" 
-                tabindex="0" 
-                class="@GetRowColor(row.item)" 
-                style="@GetRowStyle(row.i)" 
-                @onclick="(() => OnRowClick.InvokeAsync(row.item))" 
-                @onfocus="(() => OnRowFocus.InvokeAsync(row.item))"
-            >
+                <AeTableRow
+                    GridStyle="@_gridStyle"
+                    tabindex="0"
+                    class="@GetRowColor(row.item)"
+                    style="@GetRowStyle(row.i)"
+                    @onclick="() => OnRowClick.InvokeAsync(row.item)"
+                    @onfocus="() => OnRowFocus.InvokeAsync(row.item)">
 
-                @if (SimpleTable)
-                {
-                    @if (@CustomRowLabels != null)
+                    @if (SimpleTable)
                     {
-                        @CustomRowLabels(row.i + 1)
+                        @if (CustomRowLabels != null)
+                        {
+                            @CustomRowLabels(row.i + 1)
+                        }
+                        else
+                        {
+                            <AeTableCell class="row-label">@(row.i + 1)</AeTableCell>
+                        }
                     }
-                    else
+                    @foreach (var (accessor, index) in Accessors.Select((a, i) => (a, i)))
                     {
-                        <AeTableCell class="row-label">@(row.i+1)</AeTableCell>
+                        if (Renderers?[index] is null)
+                        {
+                            <span
+                                @ref="cells[(row.i, index)]"
+                                @onmouseover="async () => await OnHoverShowToolTip(row.i, index, accessor?.Invoke(row.item))">
+                                <AeTableCell>
+                                    @accessor?.Invoke(row.item)
+                                </AeTableCell>
+                            </span>
+                        }
+                        else
+                        {
+                            <AeTableCell> @Renderers[index](row.item) </AeTableCell>
+                        }
                     }
-                }
-                @foreach (var (accessor, index) in Accessors.Select((a, i) => (a, i)))
-                {
-                    if (Renderers?[index] is null)
-                    {
-                        <span
-                            @ref="cells[(row.i, index)]" 
-                            @onmouseover="async () => await OnHoverShowToolTip(row.i, index, accessor?.Invoke(row.item))" 
-                        >
-                            <AeTableCell>
-                                @accessor?.Invoke(row.item)
-                            </AeTableCell>
-                        </span>
-                    }
-                    else
-                    {
-                        <AeTableCell> @Renderers[index](row.item) </AeTableCell>
-                    }
-                }
-            </AeTableRow>
+                </AeTableRow>
             }
         </div>
     </div>
 </div>
-@if(AddToolTip)
+@if (AddToolTip)
 {
     <div @ref="toolTipRef" class="ae table-tooltip-wrapper" style="top:@(_toolTipTop)px; left:@(_toolTipLeft)px; width:@(_toolTipWidth)px; height:@(_toolTipHeight)px;">
         <AeTooltip Text="@_toolTipText"/>
@@ -98,29 +96,39 @@
 }
 
 @code {
+
     [Parameter]
     public Func<T, string> ColorAccessor { get; set; }
+
     [Parameter]
     public int MaxHeight { get; set; } = 600;
+
     [Parameter]
-    public int RowHeight { get; set; } = 33;  //In px
+    public int RowHeight { get; set; } = 33; //In px
+
     [Parameter]
     public bool SimpleTable { get; set; } = false;
+
     [Parameter]
     public Func<int, RenderFragment> CustomRowLabels { get; set; }
+
     [Parameter]
     public bool AddToolTip { get; set; }
-    
+
     protected override RenderFragment DefaultHeader(string header, int index)
     {
         return
-                @<AeTypography class="table-cell" @onclick="() => ToggleSortOnColumn(index)">
-                    @header
-                    <span class="ae table-sort"><i class="@GetSortIconClass(index)"></i></span>
-               </AeTypography>;
+            @<AeTypography class="table-cell" @onclick="() => ToggleSortOnColumn(index)">
+                @header
+                <span class="ae table-sort">
+                    <i class="@GetSortIconClass(index)"></i>
+                </span>
+            </AeTypography>;
     }
 
-    public class customArgs { }
+    public class customArgs
+    {
+    }
 
     private string _simple = null;
     private string _rowsStyle => $"{_gridStyle}; grid-template-rows: repeat({scrollViewResult.TakeItems},{RowHeight}px); height:{scrollViewResult.Height}px;";
@@ -134,7 +142,7 @@
 
     private ElementReference tableRef;
     private ElementReference toolTipRef;
-    private Dictionary<(int, int), ElementReference> cells = new Dictionary<(int, int), ElementReference>();
+    private Dictionary<(int, int), ElementReference> cells = new();
     private ScrollView scrollView;
     private ScrollViewResult scrollViewResult;
 
@@ -162,11 +170,12 @@
 
             scrollViewResult.Height = Rows.Count() * RowHeight;
             scrollViewResult.SkipItems = scrollView.ScrollTop / RowHeight;
-            scrollViewResult.TakeItems = (int)Math.Ceiling((double)(scrollView.ScrollTop + MaxHeight) / (double)RowHeight) - scrollViewResult.SkipItems;
+            scrollViewResult.TakeItems = (int) Math.Ceiling((scrollView.ScrollTop + MaxHeight) / (double) RowHeight) - scrollViewResult.SkipItems;
             StateHasChanged();
         }
-        if (firstRender && AddToolTip){
-            await JSRuntime.InvokeVoidAsync("initializeToolTip", new object[] {toolTipRef, DotNetObjectReference.Create(this) });
+        if (firstRender && AddToolTip)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeToolTip", toolTipRef, DotNetObjectReference.Create(this));
         }
     }
 
@@ -175,8 +184,9 @@
         return ColorAccessor?.Invoke(row) + _simple;
     }
 
-    private string GetRowStyle(int rowIndex){
-        return $"{_rowStyle} top:{((scrollViewResult.SkipItems + rowIndex) * RowHeight)}px;";
+    private string GetRowStyle(int rowIndex)
+    {
+        return $"{_rowStyle} top:{(scrollViewResult.SkipItems + rowIndex) * RowHeight}px;";
     }
 
     private async Task OnHoverShowToolTip(int row, int cell, string text)
@@ -192,7 +202,6 @@
             _toolTipLeft = position.Left;
             _toolTipText = text;
             StateHasChanged();
-
         }
     }
 
@@ -200,7 +209,10 @@
     public void OnMouseOutHideToolTip()
     {
         _toolTipText = null;
-        _toolTipLeft = 0; _toolTipTop = 0; _toolTipHeight = 0; _toolTipWidth = 0;
+        _toolTipLeft = 0;
+        _toolTipTop = 0;
+        _toolTipHeight = 0;
+        _toolTipWidth = 0;
         StateHasChanged();
     }
 
@@ -209,7 +221,7 @@
         scrollView = await JSRuntime.InvokeAsync<ScrollView>("virtualScrolling.getScrollView", tableRef);
         scrollViewResult.Height = Rows.Count() * RowHeight;
         scrollViewResult.SkipItems = scrollView.ScrollTop / RowHeight;
-        scrollViewResult.TakeItems = (int)Math.Ceiling((double)(scrollView.ScrollTop + scrollView.ClientHeight) / (double)RowHeight) - scrollViewResult.SkipItems;
+        scrollViewResult.TakeItems = (int) Math.Ceiling((scrollView.ScrollTop + scrollView.ClientHeight) / (double) RowHeight) - scrollViewResult.SkipItems;
         StateHasChanged();
     }
 
@@ -226,4 +238,5 @@
         public int SkipItems { get; set; }
         public int TakeItems { get; set; }
     }
+
 }

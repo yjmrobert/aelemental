@@ -17,11 +17,11 @@
     Description: Form is generated from .NET object model. Standard form annotations are used, few others have been added to handle labels, order, etc.
 *@
 
-<AeModelForm 
-    Model="@_starship" 
-    SubmitLabel="Save changes" 
-    OnValidSubmit="HandleValidSubmit" 
-    CancelLabel="Cancel" 
+<AeModelForm
+    Model="@_starship"
+    SubmitLabel="Save changes"
+    OnValidSubmit="HandleValidSubmit"
+    CancelLabel="Cancel"
     OnCancel="CreateStarship"
     OnChange="OnChange"
     OnConfigure="OnConfigure"
@@ -35,8 +35,8 @@
 
     private async Task<Starship> CreateStarship()
     {
-        // roll back your changes
-        _starship = new Starship() { ProductionDate = DateTime.Today };
+    // roll back your changes
+        _starship = new Starship {ProductionDate = DateTime.Today};
         StateHasChanged();
         return _starship;
     }
@@ -58,13 +58,13 @@
 
     private void HandleValidSubmit(EditContext editContext)
     {
-        //save to database
+    //save to database
         StateHasChanged();
     }
 
     private void HandleInvalidSubmit(EditContext editContext)
     {
-        //do something if form is not valid
+    //do something if form is not valid
     }
 
 

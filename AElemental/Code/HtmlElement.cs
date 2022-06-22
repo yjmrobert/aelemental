@@ -14,48 +14,46 @@
  * limitations under the License.
  */
 
-using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Components;
 
-namespace AElemental.Code
+namespace AElemental.Code;
+
+public class HtmlElement : ComponentBase
 {
-    public class HtmlElement : ComponentBase
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new();
+
+    protected Dictionary<string, object>? InputAttributesWithoutClass { get; set; }
+
+    protected string? _inputClass => InputAttributes.ContainsKey("class")
+        ? InputAttributes["class"] as string
+        : "";
+
+    protected Dictionary<string, object>? InputAttributesWithoutClassOrStyle { get; set; }
+
+    protected string? _inputStyle => InputAttributes.ContainsKey("style")
+        ? InputAttributes["style"] as string
+        : "";
+
+
+    protected override void OnInitialized()
     {
-        [Parameter] public RenderFragment? ChildContent { get; set; }
+        base.OnInitialized();
 
-        [Parameter(CaptureUnmatchedValues = true)]
-        public Dictionary<string, object> InputAttributes { get; set; } = new();
+        InputAttributes.Add("ae-component-name", GetType().Name);
 
-        protected Dictionary<string, object>? InputAttributesWithoutClass { get; set; }
+        InputAttributesWithoutClass = InputAttributes
+            .Keys
+            .Where(k => k != "class")
+            .ToDictionary(_ => _, _ => InputAttributes[_]);
 
-        protected string? _inputClass => InputAttributes.ContainsKey("class")
-            ? InputAttributes["class"] as string
-            : "";
-
-        protected Dictionary<string, object>? InputAttributesWithoutClassOrStyle { get; set; }
-
-        protected string? _inputStyle => InputAttributes.ContainsKey("style")
-            ? InputAttributes["style"] as string
-            : "";
-
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            InputAttributes.Add("ae-component-name", GetType().Name);
-
-            InputAttributesWithoutClass = InputAttributes
-                .Keys
-                .Where(k => k != "class")
-                .ToDictionary(_ => _, _ => InputAttributes[_]);
-
-            InputAttributesWithoutClassOrStyle = InputAttributesWithoutClass?
-                .Keys
-                .Where(k => k != "style")
-                .ToDictionary(_ => _, _ => InputAttributes[_]);
-        }
+        InputAttributesWithoutClassOrStyle = InputAttributesWithoutClass?
+            .Keys
+            .Where(k => k != "style")
+            .ToDictionary(_ => _, _ => InputAttributes[_]);
     }
 }

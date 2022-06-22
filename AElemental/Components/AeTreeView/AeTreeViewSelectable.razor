@@ -15,20 +15,19 @@
     <ul class="ae tree-view">
         @foreach (var item in Roots)
         {
-            <TreeItem 
-                T="T" 
-                FetchChildren="FetchChildren" 
-                RenderNode="RenderNode" 
-                ItemChecked="ItemSelected" 
+            <TreeItem
+                T="T"
+                FetchChildren="FetchChildren"
+                RenderNode="RenderNode"
+                ItemChecked="ItemSelected"
                 IsChecked="IsChecked"
                 IsIndeterminate="IsIndeterminate"
-                Root="item" 
-                NodeClicked="NodeClicked" 
-                IsCollapsed="IsCollapsed" 
+                Root="item"
+                NodeClicked="NodeClicked"
+                IsCollapsed="IsCollapsed"
                 ToggleCollapsed="ToggleCollapsed"
-                IsBold="IsBold" 
-                NodeIsClickable="NodeIsClickable" 
-            />
+                IsBold="IsBold"
+                NodeIsClickable="NodeIsClickable"/>
         }
     </ul>
 }
@@ -40,7 +39,7 @@
 
     [Parameter]
     public Func<T, bool> IsChecked { get; set; }
-    
+
     [Parameter]
     public Func<T, bool> IsIndeterminate { get; set; }
 
@@ -49,4 +48,5 @@
         await ItemChecked.InvokeAsync(tuple);
         StateHasChanged();
     }
+
 }

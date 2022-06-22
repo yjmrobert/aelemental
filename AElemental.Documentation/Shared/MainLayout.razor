@@ -7,7 +7,6 @@
 *@
 
 @inherits LayoutComponentBase
-@using AElemental.Code
 
 <AeLayout SideNavLinks="_sideNavLinks" TopNavLinks="_topNavLinks">
     <TopBar>
@@ -18,7 +17,7 @@
         </AeTopNav>
     </TopBar>
     <SideBar>
-        <AeSideNav Links="_sideNavLinks" />
+        <AeSideNav Links="_sideNavLinks"/>
     </SideBar>
     <ChildContent>
         @Body
@@ -45,45 +44,44 @@
                 new()
                 {
                     Name = "Button",
-                    Url = "/components/button",
+                    Url = "/components/button"
                 },
                 new()
                 {
                     Name = "Checkbox",
-                    Url = "/components/checkbox",
+                    Url = "/components/checkbox"
                 },
                 new()
                 {
                     Name = "Code",
-                    Url = "/components/code",
+                    Url = "/components/code"
                 },
                 new()
                 {
                     Name = "Typography",
-                    Url = "/components/typography",
+                    Url = "/components/typography"
                 },
                 new()
                 {
                     Name = "Dropdown",
-                    Url = "components/dropdown",
+                    Url = "components/dropdown"
                 },
                 new()
                 {
                     Name = "Select",
-                    Url = "components/select",
+                    Url = "components/select"
                 },
                 new()
                 {
                     Name = "Multi-Select",
-                    Url = "components/multi-select",
+                    Url = "components/multi-select"
                 },
-                new ()
+                new()
                 {
                     Name = "Icon",
                     Url = "components/icon"
                 },
-
-                new ()
+                new()
                 {
                     Name = "Tooltip",
                     Url = "components/tooltip"
@@ -97,26 +95,26 @@
             Icon = "layout-3",
             SubLinks = new List<AeLayoutNavLink>
             {
-                new ()
+                new()
                 {
                     Name = "Grid",
                     Url = "/layouts/grid"
                 },
-                new ()
+                new()
                 {
                     Name = "Paper",
                     Url = "/layouts/paper"
                 },
-                new ()
+                new()
                 {
                     Name = "Layout",
                     Url = "/layouts/layout"
                 },
-                new ()
+                new()
                 {
                     Name = "Progress Indicator",
                     Url = "components/progress-indicator"
-                },
+                }
             }.OrderBy(i => i.Name)
         },
         new AeLayoutNavLink
@@ -126,41 +124,41 @@
             Icon = "article",
             SubLinks = new List<AeLayoutNavLink>
             {
-                new ()
+                new()
                 {
                     Name = "Model Form",
                     Url = "/form/model-form"
                 },
-                new ()
+                new()
                 {
                     Name = "Input",
                     Url = "/form/input"
                 }
             }
         },
-        new AeLayoutNavLink()
+        new AeLayoutNavLink
         {
             Name = "Table",
             Url = "/table",
             Icon = "table",
             SubLinks = new List<AeLayoutNavLink>
             {
-                new ()
+                new()
                 {
                     Name = "Default",
                     Url = "/table/default"
                 },
-                new ()
+                new()
                 {
                     Name = "Expandable",
                     Url = "/table/expandable"
                 },
-                new ()
+                new()
                 {
                     Name = "Sortable",
                     Url = "/table/sortable"
                 },
-                new ()
+                new()
                 {
                     Name = "Paginated",
                     Url = "/table/paginated"
@@ -174,7 +172,7 @@
         new AeLayoutNavLink
         {
             Name = "Github",
-            Url = "https://github.com/apption-oscode/elemental-blazor",
+            Url = "https://github.com/apption-oscode/elemental-blazor"
         },
         new AeLayoutNavLink
         {
@@ -184,20 +182,20 @@
                 new()
                 {
                     Name = "Dev Blog",
-                    Url = "https://devblog.apption.com",
+                    Url = "https://devblog.apption.com"
                 },
                 new()
                 {
                     Name = "Datahunter",
-                    Url = "https://datahunter.ai",
+                    Url = "https://datahunter.ai"
                 },
                 new()
                 {
                     Name = "Apption",
-                    Url = "https://apption.com",
-                },
+                    Url = "https://apption.com"
+                }
             }
-        },
+        }
     };
 
     // private string _boolIsTrue = "false";

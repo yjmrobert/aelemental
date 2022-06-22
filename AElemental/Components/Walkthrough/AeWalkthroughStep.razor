@@ -11,7 +11,8 @@
 </div>
 
 @functions
-{   [CascadingParameter]
+{
+    [CascadingParameter]
     protected internal AeWalkthrough Parent { get; set; }
 
     [Parameter]
@@ -42,11 +43,10 @@
     public bool? Overlap { get; set; }
 
 
-
     protected override void OnInitialized()
     {
         if (Id is null)
-            Id = $"#Step-{this.Order}";
+            Id = $"#Step-{Order}";
 
         if (Position is null)
             Position = "auto";
@@ -62,5 +62,5 @@
 
 
         Parent.AddStep(this);
-
-    } }
+    }
+}

@@ -14,56 +14,47 @@
  * limitations under the License.
  */
 
-using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Components;
 
-namespace AElemental.Code
+namespace AElemental.Code;
+
+public class TreeView<T> : ComponentBase
 {
-    public class TreeView<T>: ComponentBase
+    private readonly List<(T, bool)> IsCollapsedList = new();
+
+    [Parameter] public Func<T, IEnumerable<T>> FetchChildren { get; set; }
+
+    [Parameter] public IEnumerable<T> Roots { get; set; }
+
+    [Parameter] public Func<T, bool> IsCollapsed { get; set; }
+
+    [Parameter] public EventCallback<T> ToggleCollapsed { get; set; }
+
+    protected override void OnInitialized()
     {
-        [Parameter]
-        public Func<T, IEnumerable<T>> FetchChildren { get; set; }
-
-        [Parameter]
-        public IEnumerable<T> Roots { get; set; }
-
-        [Parameter]
-        public Func<T, bool> IsCollapsed { get; set; }
-
-        [Parameter]
-        public EventCallback<T> ToggleCollapsed { get; set; }
-
-        private List<(T, bool)> IsCollapsedList = new List<(T, bool)>();
-
-        protected override void OnInitialized()
-        {
-            foreach (var item in Roots)
-            {
-                if (!IsCollapsedList.Select(x => x.Item1).Contains(item))
-                    IsCollapsedList.Add((item, true));
-            }
-            if (IsCollapsed == null || !ToggleCollapsed.HasDelegate)
-            {
-                IsCollapsed = itemCollapsed;
-                ToggleCollapsed = new EventCallback<T>(this, (Action<T>)setItemCollapsed);
-            }
-        }
-
-        private bool itemCollapsed(T item)
-        {
+        foreach (var item in Roots)
             if (!IsCollapsedList.Select(x => x.Item1).Contains(item))
                 IsCollapsedList.Add((item, true));
-            return IsCollapsedList.First(t => t.Item1.Equals(item)).Item2;
-        }
-
-        private void setItemCollapsed(T item)
+        if (IsCollapsed == null || !ToggleCollapsed.HasDelegate)
         {
-            var isCollapsed = IsCollapsedList.First(t => t.Item1.Equals(item)).Item2;
-            IsCollapsedList[IsCollapsedList.FindLastIndex(x => x.Item1.Equals(item))] = (item, !isCollapsed);
+            IsCollapsed = itemCollapsed;
+            ToggleCollapsed = new EventCallback<T>(this, (Action<T>) setItemCollapsed);
         }
+    }
 
+    private bool itemCollapsed(T item)
+    {
+        if (!IsCollapsedList.Select(x => x.Item1).Contains(item))
+            IsCollapsedList.Add((item, true));
+        return IsCollapsedList.First(t => t.Item1.Equals(item)).Item2;
+    }
 
+    private void setItemCollapsed(T item)
+    {
+        var isCollapsed = IsCollapsedList.First(t => t.Item1.Equals(item)).Item2;
+        IsCollapsedList[IsCollapsedList.FindLastIndex(x => x.Item1.Equals(item))] = (item, !isCollapsed);
     }
 }

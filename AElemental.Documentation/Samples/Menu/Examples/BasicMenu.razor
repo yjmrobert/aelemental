@@ -10,26 +10,26 @@
 *@
 
 <div style="width:600px;margin:1rem">
-    <AeMenu links=@_Links> </AeMenu>
+    <AeMenu links="@_Links"> </AeMenu>
 </div>
 <div style="width:300px;margin:1rem">
-  <AeMenu links=@_Links> </AeMenu>
+    <AeMenu links="@_Links"> </AeMenu>
 </div>
 <div style="width:150px;margin:1rem">
-  <AeMenu links=@_Links> </AeMenu>
+    <AeMenu links="@_Links"> </AeMenu>
 </div>
 
 
 @code {
 
-  List<(string label, string href, int priority)> _Links = new List<(string, string, int)>()
-  {
-    ("Products", "menu", 1),
-    ("Services", "menu", 1),
-    ("Company", "menu", 1),
-    ("Privacy", "menu", 2),
-    ("Resources", "menu", 2),
-    ("Contact", "menu", 2),
-  };
+    List<(string label, string href, int priority)> _Links = new()
+    {
+        ("Products", "menu", 1),
+        ("Services", "menu", 1),
+        ("Company", "menu", 1),
+        ("Privacy", "menu", 2),
+        ("Resources", "menu", 2),
+        ("Contact", "menu", 2)
+    };
 
 }

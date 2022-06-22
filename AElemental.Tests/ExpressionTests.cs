@@ -1,60 +1,57 @@
-﻿using AElemental.Components;
-using AElemental.Documentation.Data;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using AElemental.Components;
+using AElemental.Documentation.Data;
 using Xunit;
 
-namespace AElemental.Tests
+namespace AElemental.Tests;
+
+public class ExpressionTests
 {
-    public class ExpressionTests
+    [Fact]
+    public void CanGenerateExpression1()
     {
+        var starshipType = typeof(Starship);
+        var starshipInstance = new Starship {Identifier = "HAHA"};
+        var idProp = starshipType.GetProperty("Identifier");
+        Expression<Func<string>> tgtExpression = () => starshipInstance.Identifier;
+        Assert.NotNull(idProp);
+        var constant = Expression.Constant(starshipInstance);
+        var parameter = Expression.Parameter(starshipType, "t");
 
-        [Fact]
-        public void CanGenerateExpression1()
-        {
-            var starshipType = typeof(Starship);
-            var starshipInstance = new Starship() { Identifier = "HAHA"};
-            var idProp = starshipType.GetProperty("Identifier");
-            Expression<Func<string>> tgtExpression = () => starshipInstance.Identifier;
-            Assert.NotNull(idProp);
-            var constant = Expression.Constant(starshipInstance);
-            var parameter = Expression.Parameter(starshipType, "t");
+        var memberExpression = Expression.Property(constant, idProp.GetGetMethod());
+        var expr1 = Expression.Lambda(memberExpression, parameter);
+        var str = expr1.ToString();
+        var compiled = expr1.Compile();
+        var funcExpr = Expression.Lambda<Func<string>>(memberExpression);
+        var compiled2 = funcExpr.Compile();
+        var result = compiled2();
+        Assert.Equal("HAHA", result);
+    }
 
-            var memberExpression = Expression.Property(constant, idProp.GetGetMethod());
-            var expr1 = Expression.Lambda(memberExpression, parameter);
-            var str = expr1.ToString();
-            var compiled = expr1.Compile();
-            var funcExpr = Expression.Lambda<Func<string>>(memberExpression);
-            var compiled2 = funcExpr.Compile();
-            var result = compiled2();
-            Assert.Equal("HAHA", result);
-        }
+    [Fact]
+    public void CanGenerateExpression2()
+    {
+        var starshipType = typeof(Starship);
+        var starshipInstance = new Starship {Identifier = "HAHA"};
+        var idProp = starshipType.GetProperty("Identifier");
+        var expr = AeModelFormTools.GetExpression<string>(starshipInstance, idProp);
 
-        [Fact]
-        public void CanGenerateExpression2()
-        {
-            var starshipType = typeof(Starship);
-            var starshipInstance = new Starship() { Identifier = "HAHA" };
-            var idProp = starshipType.GetProperty("Identifier");
-            var expr = AeModelFormTools.GetExpression<string>(starshipInstance, idProp);
+        var compiled = expr.Compile();
+        var result = compiled();
+        Assert.Equal("HAHA", result);
+    }
 
-            var compiled = expr.Compile();
-            var result = compiled();
-            Assert.Equal("HAHA", result);
-        }
+    [Fact]
+    public void CanGenerateExpressionAbstract()
+    {
+        var starshipType = typeof(Starship);
+        var starshipInstance = new Starship {Identifier = "HAHA", ShipName = "ze_cheap_name"};
+        var idProp = starshipType.GetProperty("ShipName");
+        var expr = AeModelFormTools.GetExpression<string>(starshipInstance, idProp);
 
-        [Fact]
-        public void CanGenerateExpressionAbstract()
-        {
-            var starshipType = typeof(Starship);
-            var starshipInstance = new Starship() { Identifier = "HAHA", ShipName = "ze_cheap_name" };
-            var idProp = starshipType.GetProperty("ShipName");
-            var expr = AeModelFormTools.GetExpression<string>(starshipInstance, idProp);
-
-            var compiled = expr.Compile();
-            var result = compiled();
-            Assert.Equal("ze_cheap_name", result);
-        }
-
+        var compiled = expr.Compile();
+        var result = compiled();
+        Assert.Equal("ze_cheap_name", result);
     }
 }

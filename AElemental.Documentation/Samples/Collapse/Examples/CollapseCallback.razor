@@ -11,7 +11,7 @@
 
 <AeFlex Vertical class="example">
     <AeTypography>Last clicked section header: </AeTypography>
-    @if(_lastClicked == null)
+    @if (_lastClicked == null)
     {
         <AeTypography>N/A</AeTypography>
     }
@@ -24,49 +24,49 @@
     }
 </AeFlex>
 
-<AeCollapse Accordion OnSectionToggled="((args) => HandleToggle(args.Section, args.Open))">
-  <AeCollapseSection>
-    <Header>
-      <AeTypography Variant="h5">Callback 1 (Click me)</AeTypography>
-    </Header>
-    <ChildContent>
-      <AeTypography> 
-        1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
-      </AeTypography>
-    </ChildContent>
-  </AeCollapseSection>
-  <AeCollapseSection DefaultOpen>
-    <Header>
-      <AeTypography Variant="h5">Callback 2 (Click me)</AeTypography>
-    </Header>
-    <ChildContent>
-      <AeTypography> 
-        2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
-      </AeTypography>
-    </ChildContent>
-  </AeCollapseSection>
-  <AeCollapseSection DefaultOpen>
-    <Header>
-      <AeTypography Variant="h5">Callback 3 (Click me)</AeTypography>
-    </Header>
-    <ChildContent>
-      <AeTypography> 
-        3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
-      </AeTypography>
-    </ChildContent>
-  </AeCollapseSection>
+<AeCollapse Accordion OnSectionToggled="args => HandleToggle(args.Section, args.Open)">
+    <AeCollapseSection>
+        <Header>
+            <AeTypography Variant="h5">Callback 1 (Click me)</AeTypography>
+        </Header>
+        <ChildContent>
+            <AeTypography>
+                1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
+            </AeTypography>
+        </ChildContent>
+    </AeCollapseSection>
+    <AeCollapseSection DefaultOpen>
+        <Header>
+            <AeTypography Variant="h5">Callback 2 (Click me)</AeTypography>
+        </Header>
+        <ChildContent>
+            <AeTypography>
+                2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
+            </AeTypography>
+        </ChildContent>
+    </AeCollapseSection>
+    <AeCollapseSection DefaultOpen>
+        <Header>
+            <AeTypography Variant="h5">Callback 3 (Click me)</AeTypography>
+        </Header>
+        <ChildContent>
+            <AeTypography>
+                3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et turpis lobortis, rutrum nunc ut, bibendum dui. Proin bibendum nisl ut gravida cursus. Morbi vitae ullamcorper justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla placerat facilisis lorem, vel gravida erat fringilla a. Aenean tincidunt ex elit, in placerat est sagittis ut. Sed dapibus metus massa, et ultricies lectus efficitur nec. Praesent non felis eget ante ultrices hendrerit nec id justo. Quisque at fringilla mi. Nulla ut nisi dictum, euismod velit ut, convallis neque.
+            </AeTypography>
+        </ChildContent>
+    </AeCollapseSection>
 </AeCollapse>
 
 
 @code {
 
-  private AeCollapseSection _lastClicked = null;
-  private bool _lastClickedIsOpen;
+    private AeCollapseSection _lastClicked = null;
+    private bool _lastClickedIsOpen;
 
-  void HandleToggle(AeCollapseSection section, bool isOpen)
-  {
-    _lastClicked = section;
-    _lastClickedIsOpen = isOpen;
+    void HandleToggle(AeCollapseSection section, bool isOpen)
+    {
+        _lastClicked = section;
+        _lastClickedIsOpen = isOpen;
+    }
 
-  }
 }

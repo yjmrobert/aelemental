@@ -2,9 +2,9 @@
 @inherits HtmlElement
 
 <div class="@_className" @attributes="InputAttributesWithoutClass">
-  @ChildContent
+    @ChildContent
 </div>
 
 @code {
-  private string _className => $"ae table-cell {_inputClass}";
+    private string _className => $"ae table-cell {_inputClass}";
 }
