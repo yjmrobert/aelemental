@@ -1,0 +1,20 @@
+﻿@namespace AElemental.Components
+@inherits HtmlElement
+
+
+@if (Size != null)
+{
+    <div class="@($"ae col-{Size} {_inputClass}")">@ChildContent</div>
+}
+else
+{
+    <div class="ae col @_inputClass">@ChildContent</div>
+}
+
+
+@code {
+
+    [Parameter]
+    public int? Size { get; set; }
+
+}

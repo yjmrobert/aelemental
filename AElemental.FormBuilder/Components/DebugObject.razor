@@ -1,0 +1,34 @@
+﻿@using System.Reflection
+<AeTable Accessors="accessorFunctions"
+         Dataset="_PropertyInfos"
+         Headers="headers"/>
+
+
+@code {
+
+    [Parameter]
+    public object Object { get; set; }
+
+    // Define the headers at the top of the table
+    private List<string> headers = new()
+    {
+        "Property", "Value"
+    };
+
+    // Typeparam class to hold row data, can be anything
+
+    // Accessor functions to retrieve cell value
+    private List<Func<PropertyInfo, string>> accessorFunctions;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _PropertyInfos = Object.GetType().GetProperties().ToList();
+        accessorFunctions = new List<Func<PropertyInfo, string>>
+        {
+            prop => { return prop.Name; },
+            prop => { return Convert.ToString((string) (prop.GetValue(Object, null) ?? "(null)")); }
+        };
+    }
+
+    private List<PropertyInfo> _PropertyInfos = null;
+}

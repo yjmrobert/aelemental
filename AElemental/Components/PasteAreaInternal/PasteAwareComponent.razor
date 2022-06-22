@@ -1,0 +1,45 @@
+﻿@inject IJSRuntime runtime
+@implements IDisposable
+
+<span @ref="_reference">
+    @ChildContent
+</span>
+
+@code {
+
+    private ElementReference _reference;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<IEnumerable<IDictionary<string, string>>> OnContentPasted { get; set; }
+
+    [JSInvokable("Pasted")]
+    public async void raisePasteEvent(IEnumerable<IDictionary<string, string>> items)
+    {
+        await OnContentPasted.InvokeAsync(items);
+    }
+
+    private DotNetObjectReference<PasteAwareComponent> _objectReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            _objectReference = DotNetObjectReference.Create(this);
+            await runtime.InvokeVoidAsync("window.BlazorClipboadInterop.ListeningForPasteEvents", _reference, _objectReference);
+        }
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        if (_objectReference != null)
+        {
+            _objectReference.Dispose();
+        }
+    }
+
+}

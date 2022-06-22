@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageId>AElemental.Blazor</PackageId>
+        <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
+        <Authors>Apption</Authors>
+        <Company>Apption</Company>
+        <Product>AElemental for Blazor</Product>
+        <Description>Build modern, sass customizable web experiences in Blazor with code first and functional primitives. Elemental components include a fully customizable table, common input controls, an object form editor and layout tools.</Description>
+        <Copyright>Copyright Apption 2021</Copyright>
+        <PackageProjectUrl>https://github.com/apption-oscode/elemental-blazor</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/apption-oscode/elemental-blazor</RepositoryUrl>
+        <PackageTags>c# blazor</PackageTags>
+        <RepositoryType>Git</RepositoryType>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageIcon>AElemental_128x128.png</PackageIcon>
+        <PackageIconFullPath>$(MSBuildThisFileDirectory)AElemental_128x128.png</PackageIconFullPath>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ErrorOnDuplicatePublishOutputFiles>true</ErrorOnDuplicatePublishOutputFiles>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="10.4.0" />
+        <PackageReference Include="Markdig" Version="0.28.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- File with mtime of last successful npm install -->
+        <NpmInstallStampFile>node_modules/.install-stamp</NpmInstallStampFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(PackageIconFullPath)" Pack="true" PackagePath="\" />
+        <None Include="wwwroot\js\third-party\jquery.min.js" />
+        <None Include="wwwroot\js\third-party\shepherd.min.js">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <TypeScriptCompile Include="Components\AeButton\AeButton.ts" />
+        <TypeScriptCompile Include="Components\AeCheckbox\AeCheckbox.ts" />
+        <TypeScriptCompile Include="Components\AeDropdown\AeDropdown.ts" />
+        <TypeScriptCompile Include="Components\AeSelect\AeSelect.ts" />
+    </ItemGroup>
+</Project>
+
+

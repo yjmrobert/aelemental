@@ -1,0 +1,22 @@
+﻿@page "/components/tooltip"
+@using AElemental.Documentation.Samples.Tooltip.Examples
+@inherits DemoPage
+
+
+@foreach (var demo in _demos)
+{
+    <DemoSection Path="@($"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor")">
+        <DynamicComponent Type="demo"/>
+    </DemoSection>
+}
+
+@code {
+
+    private readonly List<Type> _demos = new()
+    {
+        typeof(BasicTooltip),
+        typeof(TooltipDirections),
+        typeof(DefinitionTooltip),
+    };
+
+}

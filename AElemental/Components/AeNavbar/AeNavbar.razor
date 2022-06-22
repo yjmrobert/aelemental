@@ -1,0 +1,78 @@
+﻿@namespace AElemental.Components
+@inherits HtmlElement
+
+<div class="@_classname" @attributes="InputAttributesWithoutClass">
+    <ul class="ae navlinks">
+        @if (Brand != null)
+        {
+            <li>
+                @Brand
+            </li>
+        }
+        @foreach (var link in Links)
+        {
+            <AeNavLinkGroup @ref="NavGroupsRef" Link="link" CloseNav="CloseNav"/>
+        }
+
+        <li style="flex-grow: 1;"></li>
+
+        @foreach (var link in RightLinks)
+        {
+            <AeNavLinkGroup @ref="NavGroupsRef" Link="link" CloseNav="CloseNav"/>
+        }
+
+        <li class="ae responsive-icon">
+            <a href="javascript:void(0);" class="ae navlink" @onclick="ToggleResponsive">
+                <AeTypography>
+                    &#9776;
+                </AeTypography>
+            </a>
+        </li>
+    </ul>
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment Brand { get; set; }
+
+    [Parameter]
+    public List<AeNavLink> Links { get; set; } = new();
+
+    [Parameter]
+    public List<AeNavLink> RightLinks { get; set; } = new();
+
+    [Parameter]
+    public bool ForceResponsive { get; set; } = false;
+
+    private string _classname => $"ae navbar {_inputClass} {(_isOpen ? "open" : "")} {(ForceResponsive ? "force-responsive" : "")}";
+    private bool _isOpen = false;
+
+    private List<AeNavLinkGroup> NavGroupsRefs = new();
+
+    AeNavLinkGroup NavGroupsRef
+    {
+        set => NavGroupsRefs.Add(value);
+    }
+
+    private async Task ToggleResponsive()
+    {
+        _isOpen = !_isOpen;
+        foreach (var group in NavGroupsRefs)
+        {
+            await group.CloseDropdown();
+        }
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+    private async Task CloseNav()
+    {
+        _isOpen = false;
+        foreach (var group in NavGroupsRefs)
+        {
+            await group.CloseDropdown();
+        }
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+}

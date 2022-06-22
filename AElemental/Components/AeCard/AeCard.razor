@@ -1,0 +1,64 @@
+﻿@namespace AElemental.Components
+@inherits HtmlElement
+
+<div class="@_classname" @attributes="InputAttributesWithoutClass">
+    @if (Header != null)
+    {
+        <div class="ae card-header">
+            @Header
+        </div>
+    }
+    @if (CardPosition == CardStyle.Horizontal)
+    {
+        <div class="ae card-content-wrapper">
+            @if (ChildContent != null)
+            {
+                <div class="ae card-content">
+                    @ChildContent
+                </div>
+            }
+            @if (Footer != null)
+            {
+                <div class="ae card-footer">
+                    @Footer
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        @if (ChildContent != null)
+        {
+            <div class="ae card-content">
+                @ChildContent
+            </div>
+        }
+        @if (Footer != null)
+        {
+            <div class="ae card-footer">
+                @Footer
+            </div>
+        }
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment Header { get; set; }
+
+    [Parameter]
+    public RenderFragment Footer { get; set; }
+
+    [Parameter]
+    public CardStyle CardPosition { get; set; }
+
+    private string _classname => $"ae card {CardPosition.ToString().ToLower()} {_inputClass}";
+
+    public enum CardStyle
+    {
+        Vertical,
+        Horizontal
+    }
+
+}

@@ -1,0 +1,28 @@
+﻿@namespace AElemental.Components
+@inherits HtmlElement
+
+<bx-dropdown-item style="@_style" class="@_class" value="@Value">@ChildContent</bx-dropdown-item>
+
+@code {
+
+    [Parameter]
+    public string Value { get; set; }
+
+
+    private string? _style;
+    private string? _class;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _style = new AeStyleBuilder()
+            .AddStyleFromAttributes(InputAttributes)
+            .NullIfEmpty();
+
+        _class = new AeCssClassBuilder()
+            .AddClassFromAttributes(InputAttributes)
+            .NullIfEmpty();
+    }
+
+}

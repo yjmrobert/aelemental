@@ -1,0 +1,84 @@
+﻿@using AElemental.Components.PasteAreaInternal
+<PasteAwareComponent OnContentPasted="FillTable">
+    @if (_excelContent.Any() == false)
+    {
+        <div class="ae table">
+            <p>CRTL + V clipboard into this box</p>
+        </div>
+    }
+    else
+    {
+        <AeTable Accessors="pasteAccessors"
+                 Dataset="_excelContent"
+                 SimpleTable="true">
+        </AeTable>
+
+
+        <AeButton Text="Import" Icon="fal fa-arrow-left" @onclick="e => ImportRecords()"/>
+        <AeButton Text="Cancel Import" Icon="far fa-plus-square" @onclick="e => CancelImport()"/>
+    }
+</PasteAwareComponent>
+
+@code {
+
+    [Parameter]
+    public EventCallback<List<string[]>> ExcelContent { get; set; }
+
+    [Parameter]
+    public EventCallback CancelPaste { get; set; }
+
+    private List<string[]> _excelContent = new();
+    private List<Func<string[], string>> pasteAccessors = new();
+
+
+    private Task ImportRecords()
+    {
+        var content = _excelContent;
+        _excelContent.Clear();
+        return ExcelContent.InvokeAsync(content);
+    }
+
+    private async Task CancelImport()
+    {
+        _excelContent.Clear();
+        StateHasChanged();
+    }
+
+    private async Task PopulateAccessors()
+    {
+        var totalColumns = _excelContent[0].Length;
+        for (var i = 0; i < totalColumns; i++)
+        {
+            var headerNumber = i + 1;
+            var j = i;
+            var func = new Func<string[], string>(p => { return p[j]; });
+            pasteAccessors.Add(func);
+        }
+    }
+
+    private async Task FillTable(IEnumerable<IDictionary<string, string>> content)
+    {
+        pasteAccessors.Clear();
+        _excelContent.Clear();
+        if (content == null || content.Count() != 1)
+        {
+            return;
+        }
+
+        var clipboardContent = content.ElementAt(0);
+        IExcelContentParser parser = new ExcelTextContentParser();
+
+        foreach (var item in clipboardContent)
+        {
+            if (parser.CanParse(item.Key) == false)
+            {
+                continue;
+            }
+
+            var parsedList = await parser.GetRows(item.Value);
+            _excelContent = parsedList.ToList();
+            await PopulateAccessors();
+        }
+    }
+
+}
