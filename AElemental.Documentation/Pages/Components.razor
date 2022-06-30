@@ -2,11 +2,12 @@
 @page "/typography/{Component}"
 @page "/layout/{Component}"
 
-@using AElemental.Documentation.Demos.AeHeading
-@using AElemental.Documentation.Demos.AeButton
-@using AElemental.Documentation.Demos.AeCheckbox
-@using AElemental.Documentation.Demos.AeCode
-@using AElemental.Documentation.Demos.AeDropdown
+@using AElemental.Documentation.Examples.AeHeading
+@using AElemental.Documentation.Examples.AeButton
+@using AElemental.Documentation.Examples.AeCheckbox
+@using AElemental.Documentation.Examples.AeCode
+@using AElemental.Documentation.Examples.AeDropdown
+@using AElemental.Documentation.Examples.AeIcon
 @inherits DemoPage
 
 
@@ -68,6 +69,16 @@
             new List<Type>
             {
                 typeof(AeHeadingBasics),
+            }
+        },
+        {
+            nameof(AeIcon).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeIconBasics),
+                typeof(AeIconColoring),
+                typeof(AeIconSizing),
+                typeof(AeIconStyling),
             }
         },
     };

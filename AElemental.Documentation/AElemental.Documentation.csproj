@@ -36,8 +36,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Demos\AeDropdown\AeDropdownBasics.razor" />
-        <EmbeddedResource Include="Demos\AeDropdown\AeDropdownDisabled.razor" />
+        <EmbeddedResource Include="Examples\AeDropdown\AeDropdownBasics.razor" />
+        <EmbeddedResource Include="Examples\AeDropdown\AeDropdownDisabled.razor" />
+        <EmbeddedResource Include="Examples\AeIcon\AeIconBasics.razor" />
+        <EmbeddedResource Include="Examples\AeIcon\AeIconColoring.razor" />
+        <EmbeddedResource Include="Examples\AeIcon\AeIconSizing.razor" />
+        <EmbeddedResource Include="Examples\AeIcon\AeIconStyling.razor" />
         <EmbeddedResource Include="Pages\Components.razor" />
         <EmbeddedResource Include="Samples\**" />
     </ItemGroup>
