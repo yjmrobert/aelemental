@@ -8,6 +8,8 @@
 @using AElemental.Documentation.Examples.AeCode
 @using AElemental.Documentation.Examples.AeDropdown
 @using AElemental.Documentation.Examples.AeIcon
+@using AElemental.Documentation.Examples.AeSelect
+@using AElemental.Documentation.Examples.AeTooltip
 @inherits DemoPage
 
 
@@ -80,6 +82,22 @@
                 typeof(AeIconColoring),
                 typeof(AeIconSizing),
                 typeof(AeIconStyling),
+            }
+        },
+        {
+            nameof(AeSelect).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeSelectBasics),
+            }
+        },
+        {
+            nameof(AeTooltip).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeTooltipBasics),
+                typeof(AeTooltipDefinitions),
+                typeof(AeTooltipDirections),
             }
         },
     };
