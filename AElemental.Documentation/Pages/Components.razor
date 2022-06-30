@@ -6,6 +6,7 @@
 @using AElemental.Documentation.Demos.AeButton
 @using AElemental.Documentation.Demos.AeCheckbox
 @using AElemental.Documentation.Demos.AeCode
+@using AElemental.Documentation.Demos.AeDropdown
 @inherits DemoPage
 
 
@@ -52,6 +53,14 @@
                 typeof(AeCodeBasics),
                 typeof(AeCodeSingleLine),
                 typeof(AeCodeMultiLine),
+            }
+        },
+        {
+            nameof(AeDropdown).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeDropdownBasics),
+                typeof(AeDropdownDisabled),
             }
         },
         {

@@ -36,6 +36,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <EmbeddedResource Include="Demos\AeDropdown\AeDropdownBasics.razor" />
+        <EmbeddedResource Include="Demos\AeDropdown\AeDropdownDisabled.razor" />
         <EmbeddedResource Include="Pages\Components.razor" />
         <EmbeddedResource Include="Samples\**" />
     </ItemGroup>
