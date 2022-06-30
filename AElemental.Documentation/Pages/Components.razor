@@ -4,6 +4,7 @@
 
 @using AElemental.Documentation.Samples.AeHeading
 @using AElemental.Documentation.Samples.AeButton
+@using AElemental.Documentation.Samples.AeCheckbox
 @inherits DemoPage
 
 
@@ -11,7 +12,7 @@
 {
     @foreach (var demo in _demos[Component.ToLowerInvariant()])
     {
-        <DemoSection Path="@($"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor")">
+        <DemoSection Path="@GetDemoSectionPath(demo)">
             <DynamicComponent Type="demo"/>
         </DemoSection>
     }
@@ -25,13 +26,6 @@
     private readonly Dictionary<string, List<Type>> _demos = new()
     {
         {
-            nameof(AeHeading).ToLowerInvariant(),
-            new List<Type>
-            {
-                typeof(AeHeadingBasics),
-            }
-        },
-        {
             nameof(AeButton).ToLowerInvariant(),
             new List<Type>
             {
@@ -41,7 +35,27 @@
                 typeof(AeButtonNavigation),
                 typeof(AeButtonOnClick)
             }
-        }
+        },
+        {
+            nameof(AeCheckbox).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeCheckboxBasics),
+                typeof(AeCheckboxIndeterminate),
+            }
+        },
+        {
+            nameof(AeHeading).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeHeadingBasics),
+            }
+        },
     };
+    
+    private string GetDemoSectionPath(Type demo)
+    {
+        return $"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor";
+    }
 
 }
