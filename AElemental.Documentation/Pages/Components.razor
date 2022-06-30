@@ -11,6 +11,7 @@
 @using AElemental.Documentation.Examples.AePaper
 @using AElemental.Documentation.Examples.AeProgressIndicator
 @using AElemental.Documentation.Examples.AeSelect
+@using AElemental.Documentation.Examples.AeText
 @using AElemental.Documentation.Examples.AeTooltip
 @inherits DemoPage
 
@@ -117,6 +118,13 @@
                 typeof(AeTooltipBasics),
                 typeof(AeTooltipDefinitions),
                 typeof(AeTooltipDirections),
+            }
+        },
+        {
+            nameof(AeText).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeTextBasics),
             }
         },
         
