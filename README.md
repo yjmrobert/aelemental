@@ -15,7 +15,8 @@ _Speed up your web projects with Blazor_
 - State of the art `AeModelForm` component for generating forms
 - Supports WASM-based client-side and SignalR-based server-side UI event interaction
 - Supports Progressive Web Applications (PWA)
-- .NET 6
+- Built upon IBM's (Carbon Web Components)
+- Install directory from NuGet [`@aelemental/blazor`](https://www.nuget.org/packages/AElemental.Blazor)
 
 ## Fully Open Source
 
