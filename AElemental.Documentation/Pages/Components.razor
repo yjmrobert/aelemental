@@ -9,6 +9,7 @@
 @using AElemental.Documentation.Examples.AeDropdown
 @using AElemental.Documentation.Examples.AeIcon
 @using AElemental.Documentation.Examples.AePaper
+@using AElemental.Documentation.Examples.AeProgressIndicator
 @using AElemental.Documentation.Examples.AeSelect
 @using AElemental.Documentation.Examples.AeTooltip
 @inherits DemoPage
@@ -86,6 +87,23 @@
             }
         },
         {
+            nameof(AePaper).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AePaperBasics),
+                typeof(AePaperElevations),
+                typeof(AePaperAccentColor),
+            }
+        },
+        {
+            nameof(AeProgressIndicator).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeProgressIndicatorBasics),
+                typeof(AeProgressIndicatorVertical),
+            }
+        },
+        {
             nameof(AeSelect).ToLowerInvariant(),
             new List<Type>
             {
@@ -101,14 +119,6 @@
                 typeof(AeTooltipDirections),
             }
         },
-        {
-            nameof(AePaper).ToLowerInvariant(),
-            new List<Type>
-            {
-                typeof(AePaperBasics),
-                typeof(AePaperElevations),
-                typeof(AePaperAccentColor),
-            }
-        },
+        
     };
 }
