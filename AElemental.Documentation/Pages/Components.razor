@@ -2,9 +2,10 @@
 @page "/typography/{Component}"
 @page "/layout/{Component}"
 
-@using AElemental.Documentation.Samples.AeHeading
-@using AElemental.Documentation.Samples.AeButton
-@using AElemental.Documentation.Samples.AeCheckbox
+@using AElemental.Documentation.Demos.AeHeading
+@using AElemental.Documentation.Demos.AeButton
+@using AElemental.Documentation.Demos.AeCheckbox
+@using AElemental.Documentation.Demos.AeCode
 @inherits DemoPage
 
 
@@ -42,6 +43,15 @@
             {
                 typeof(AeCheckboxBasics),
                 typeof(AeCheckboxIndeterminate),
+            }
+        },
+        {
+            nameof(AeCode).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeCodeBasics),
+                typeof(AeCodeSingleLine),
+                typeof(AeCodeMultiLine),
             }
         },
         {
