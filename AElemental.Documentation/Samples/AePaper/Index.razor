@@ -1,0 +1,22 @@
+﻿@page "/layouts/paper"
+@using AElemental.Documentation.Samples.AePaper.Examples
+@inherits DemoPage
+
+
+@foreach (var demo in _demos)
+{
+    <DemoSection Path="@($"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor")">
+        <DynamicComponent Type="demo"/>
+    </DemoSection>
+}
+
+@code {
+
+    private readonly List<Type> _demos = new()
+    {
+        typeof(AePaperBasics),
+        typeof(AePaperElevations),
+        typeof(AePaperAccentColor),
+    };
+
+}

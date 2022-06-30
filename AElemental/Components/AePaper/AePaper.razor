@@ -1,0 +1,36 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace AElemental.Components
+@inherits HtmlElement
+
+<div style="@_style"
+     class="@_class"
+     @attributes="@InputAttributesWithoutClassOrStyle">
+    @ChildContent
+</div>
+
+
+@code {
+    [Parameter]
+    public int Elevation { get; set; } = -1;
+    [Parameter]
+    public bool Accent { get; set; } = false;
+    
+    private string? _style;
+    private string? _class;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _style = new AeStyleBuilder()
+            .AddStyle("background-color", "var(--ae-paper-background-color)", when: !Accent)
+            .AddStyle("background-color", "var(--ae-paper-background-color-accent)", when: Accent)
+            .AddStyle("box-shadow", "var(--ae-box-shadow-" + Elevation + ", 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.14))")
+            .AddStyleFromAttributes(InputAttributes)
+            .NullIfEmpty();
+
+        _class = new AeCssClassBuilder()
+            .AddClassFromAttributes(InputAttributes)
+            .NullIfEmpty();
+    }
+}
