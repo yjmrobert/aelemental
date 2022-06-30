@@ -13,7 +13,7 @@
                                   expanded="@(_currentUrl?.Trim('/').StartsWith(item.Url?.Trim('/') ?? ""))">
                     @if (item.Icon != null)
                     {
-                        <AeIcon slot="title-icon" RxIconName="@item.Icon"/>
+                        <AeIcon slot="title-icon" Name="@item.Icon"/>
                     }
                     @foreach (var subItem in item.SubLinks)
                     {
@@ -41,7 +41,7 @@
                     <bx-side-nav-link href="@item.Url">
                         @if (item.Icon != null)
                         {
-                            <AeIcon slot="title-icon" RxIconName="@item.Icon"/>
+                            <AeIcon slot="title-icon" Name="@item.Icon"/>
                         }
                         @item.Name
                     </bx-side-nav-link>

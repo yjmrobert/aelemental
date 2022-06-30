@@ -1,0 +1,35 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace AElemental.Components
+@inherits HtmlElement
+
+<bx-link style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">
+    @ChildContent
+</bx-link>
+
+@code {
+    [Parameter]
+    public string Variant { get; set; } = AeText.Variants.Text;
+    
+    [Parameter]
+    public string? Icon { get; set; }
+    
+    private string? _class;
+    private string? _style;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _style = new AeStyleBuilder()
+            .AddStyle("font-family", "var(--ae-font-family)")
+            .AddStyle("font-size", $"var(--ae-{Variant}-font-size)")
+            .AddStyle("font-weight", $"var(--ae-{Variant}-font-weight)")
+            .AddStyle("line-height", $"var(--ae-{Variant}-line-height)")
+            .AddStyleFromAttributes(InputAttributes)
+            .NullIfEmpty();
+
+        _class = new AeCssClassBuilder()
+            .AddClassFromAttributes(InputAttributes)
+            .NullIfEmpty();
+    }
+}

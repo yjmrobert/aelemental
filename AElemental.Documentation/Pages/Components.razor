@@ -8,6 +8,7 @@
 @using AElemental.Documentation.Examples.AeCode
 @using AElemental.Documentation.Examples.AeDropdown
 @using AElemental.Documentation.Examples.AeIcon
+@using AElemental.Documentation.Examples.AeLink
 @using AElemental.Documentation.Examples.AePaper
 @using AElemental.Documentation.Examples.AeProgressIndicator
 @using AElemental.Documentation.Examples.AeSelect
@@ -125,6 +126,13 @@
             new List<Type>
             {
                 typeof(AeTextBasics),
+            }
+        },
+        {
+            nameof(AeLink).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeLinkBasics),
             }
         },
         

@@ -9,7 +9,7 @@
     public static bool UseRemixIconLibrary = true;
 
     [Parameter]
-    public string? RxIconName { get; set; }
+    public string? Name { get; set; }
 
     [Parameter]
     public string? RxStyle { get; set; } = RxIcon.RxStyle.Line;
@@ -30,12 +30,10 @@
             .NullIfEmpty();
 
         _classname = new AeCssClassBuilder()
-            .AddClass($"ri-{RxIconName}-{RxStyle}", UseRemixIconLibrary)
-            .AddClass($"{RxIconName}", UseRemixIconLibrary && !string.IsNullOrEmpty(RxIconName))
+            .AddClass($"ri-{Name}-{RxStyle}", UseRemixIconLibrary)
+            .AddClass($"{Name}", !UseRemixIconLibrary && !string.IsNullOrEmpty(Name))
             .AddClass($"{RxSize}", UseRemixIconLibrary && !string.IsNullOrEmpty(RxSize))
             .AddClassFromAttributes(InputAttributes)
-            .SetPrefix("ae-")
-            .AddClass("icon")
             .NullIfEmpty();
     }
 
