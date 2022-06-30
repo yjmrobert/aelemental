@@ -1,7 +1,7 @@
 import {css, customElement} from 'lit-element';
 import BXButton from 'carbon-web-components/es/components/button/button';
 
-@customElement('ae-btn')
+@customElement("ae-btn")
 class AeButton extends BXButton {
     static get styles() {
         return [

@@ -17,6 +17,6 @@ public class AeCssVariableAttribute : Attribute
 
     private static string ToCssVariable(string str)
     {
-        return Regex.Replace(str, "[a-z][A-Z]", m => $"{m.Value[0]}-{char.ToLower(m.Value[1])}");
+        return Regex.Replace(str, "[a-z][A-Z|0-9]|[A-Z][0-9]", m => $"{m.Value[0]}-{char.ToLower(m.Value[1])}");
     }
 }
