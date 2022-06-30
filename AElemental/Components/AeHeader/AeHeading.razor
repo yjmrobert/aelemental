@@ -38,6 +38,10 @@
 
         _style = new AeStyleBuilder()
             .AddStyle("font-family", "var(--body-font)")
+            .AddStyle("font-size", $"var(--ae-{Variant}-font-size)")
+            .AddStyle("font-weight", $"var(--ae-{Variant}-font-weight)")
+            .AddStyle("line-height", $"var(--ae-{Variant}-line-height)")
+            .AddStyle("margin", "var(--ae-heading-margin)")
             .AddStyleFromAttributes(InputAttributes)
             .NullIfEmpty();
 
