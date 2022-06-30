@@ -8,6 +8,7 @@
 @using AElemental.Documentation.Examples.AeCode
 @using AElemental.Documentation.Examples.AeDropdown
 @using AElemental.Documentation.Examples.AeIcon
+@using AElemental.Documentation.Examples.AePaper
 @using AElemental.Documentation.Examples.AeSelect
 @using AElemental.Documentation.Examples.AeTooltip
 @inherits DemoPage
@@ -98,6 +99,15 @@
                 typeof(AeTooltipBasics),
                 typeof(AeTooltipDefinitions),
                 typeof(AeTooltipDirections),
+            }
+        },
+        {
+            nameof(AePaper).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AePaperBasics),
+                typeof(AePaperElevations),
+                typeof(AePaperAccentColor),
             }
         },
     };
