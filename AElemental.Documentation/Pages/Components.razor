@@ -15,7 +15,7 @@
 {
     @foreach (var demo in _demos[Component.ToLowerInvariant()])
     {
-        <DemoSection Path="@GetDemoSectionPath(demo)">
+        <DemoSection Path="@($"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor")">
             <DynamicComponent Type="demo"/>
         </DemoSection>
     }
@@ -25,6 +25,7 @@
 
     [Parameter]
     public string Component { get; set; }
+    
 
     private readonly Dictionary<string, List<Type>> _demos = new()
     {
@@ -82,10 +83,4 @@
             }
         },
     };
-    
-    private string GetDemoSectionPath(Type demo)
-    {
-        return $"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor";
-    }
-
 }

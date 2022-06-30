@@ -83,7 +83,7 @@ else
 
     private ParsedFile file;
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         file = new ParsedFile(Path, AdditionalCS);
     }

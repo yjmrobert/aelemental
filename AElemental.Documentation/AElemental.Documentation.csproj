@@ -9,21 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Update="Samples\**">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Samples\AeHeading\Examples\Headers.razor">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Samples\AeHeading\Examples\TextExamples.razor">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Samples\AeHeading\Index.razor">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <UpToDateCheckInput Include="Styles/**/*.scss" Set="Css" />
         <UpToDateCheckBuilt Include="wwwroot/css/*.css" Set="Css" />
     </ItemGroup>
@@ -32,18 +17,10 @@
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-        <UpToDateCheckBuilt Remove="wwwroot\css\elemental-docs.min.css" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Examples\AeDropdown\AeDropdownBasics.razor" />
-        <EmbeddedResource Include="Examples\AeDropdown\AeDropdownDisabled.razor" />
-        <EmbeddedResource Include="Examples\AeIcon\AeIconBasics.razor" />
-        <EmbeddedResource Include="Examples\AeIcon\AeIconColoring.razor" />
-        <EmbeddedResource Include="Examples\AeIcon\AeIconSizing.razor" />
-        <EmbeddedResource Include="Examples\AeIcon\AeIconStyling.razor" />
-        <EmbeddedResource Include="Pages\Components.razor" />
-        <EmbeddedResource Include="Samples\**" />
+        <EmbeddedResource Include="Examples\**" />
     </ItemGroup>
 
     <ItemGroup>
