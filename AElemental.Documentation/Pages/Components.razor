@@ -3,6 +3,7 @@
 @page "/layout/{Component}"
 
 @using AElemental.Documentation.Samples.AeHeading
+@using AElemental.Documentation.Samples.AeButton
 @inherits DemoPage
 
 
@@ -21,8 +22,6 @@
     [Parameter]
     public string Component { get; set; }
 
-
-
     private readonly Dictionary<string, List<Type>> _demos = new()
     {
         {
@@ -30,6 +29,17 @@
             new List<Type>
             {
                 typeof(AeHeadingBasics),
+            }
+        },
+        {
+            nameof(AeButton).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeButtonBasics),
+                typeof(AeButtonSizes),
+                typeof(AeButtonDisabled),
+                typeof(AeButtonNavigation),
+                typeof(AeButtonOnClick)
             }
         }
     };
