@@ -1,0 +1,48 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace AElemental.Components
+@inherits HtmlElement
+
+@switch (Variant)
+{
+    case "h1":
+        <h1 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h1>
+        break;
+    case "h2":
+        <h2 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h2>
+        break;
+    case "h3":
+        <h3 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h3>
+        break;
+    case "h4":
+        <h4 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h4>
+        break;
+    case "h5":
+        <h5 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h5>
+        break;
+    case "h6":
+        <h6 style="@_style" class="@_class" @attributes="@InputAttributesWithoutClassOrStyle">@ChildContent</h6>
+        break;
+}
+
+@code {
+
+    [Parameter]
+    public string Variant { get; set; } = Variants.H1;
+    
+    private string? _class;
+    private string? _style;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _style = new AeStyleBuilder()
+            .AddStyle("font-family", "var(--body-font)")
+            .AddStyleFromAttributes(InputAttributes)
+            .NullIfEmpty();
+
+        _class = new AeCssClassBuilder()
+            .AddClassFromAttributes(InputAttributes)
+            .NullIfEmpty();
+    }
+}

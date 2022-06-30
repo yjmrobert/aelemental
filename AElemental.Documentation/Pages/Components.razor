@@ -1,0 +1,37 @@
+﻿@page "/component/{Component}"
+@page "/typography/{Component}"
+@page "/layout/{Component}"
+
+@using AElemental.Documentation.Samples.AeHeading
+@inherits DemoPage
+
+
+@if (_demos.ContainsKey(Component.ToLowerInvariant()))
+{
+    @foreach (var demo in _demos[Component.ToLowerInvariant()])
+    {
+        <DemoSection Path="@($"{demo.FullName?.Replace("AElemental.Documentation.", "./")}.razor")">
+            <DynamicComponent Type="demo"/>
+        </DemoSection>
+    }
+}
+
+@code {
+
+    [Parameter]
+    public string Component { get; set; }
+
+
+
+    private readonly Dictionary<string, List<Type>> _demos = new()
+    {
+        {
+            nameof(AeHeading).ToLowerInvariant(),
+            new List<Type>
+            {
+                typeof(AeHeadingBasics),
+            }
+        }
+    };
+
+}

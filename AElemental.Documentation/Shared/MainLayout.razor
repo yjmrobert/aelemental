@@ -44,49 +44,68 @@
                 new()
                 {
                     Name = "Button",
-                    Url = "/components/button"
+                    Url = "/component/button"
                 },
                 new()
                 {
                     Name = "Checkbox",
-                    Url = "/components/checkbox"
+                    Url = "/component/checkbox"
                 },
                 new()
                 {
                     Name = "Code",
-                    Url = "/components/code"
-                },
-                new()
-                {
-                    Name = "Typography",
-                    Url = "/components/typography"
+                    Url = "/component/code"
                 },
                 new()
                 {
                     Name = "Dropdown",
-                    Url = "components/dropdown"
+                    Url = "/component/dropdown"
                 },
                 new()
                 {
                     Name = "Select",
-                    Url = "components/select"
+                    Url = "/component/select"
                 },
                 new()
                 {
                     Name = "Multi-Select",
-                    Url = "components/multi-select"
+                    Url = "/component/multi-select"
                 },
                 new()
                 {
                     Name = "Icon",
-                    Url = "components/icon"
+                    Url = "/component/icon"
                 },
                 new()
                 {
                     Name = "Tooltip",
-                    Url = "components/tooltip"
+                    Url = "/component/tooltip"
                 }
             }.OrderBy(i => i.Name)
+        },
+        new AeLayoutNavLink
+        {
+            Name = "Typography",
+            Url = "/typographys",
+            Icon = "pen-nib",
+            SubLinks = new List<AeLayoutNavLink>
+            {
+                new()
+                {
+                    Name = "Heading",
+                    Url = "/typography/aeheading"
+                },
+                new()
+                {
+                    Name = "Text",
+                    Url = "/typography/aetext"
+                },
+                new()
+                {
+                    Name = "Link",
+                    Url = "/typography/aelink"
+                },
+            }
         },
         new AeLayoutNavLink
         {
@@ -98,22 +117,22 @@
                 new()
                 {
                     Name = "Grid",
-                    Url = "/layouts/grid"
+                    Url = "/layout/grid"
                 },
                 new()
                 {
                     Name = "Paper",
-                    Url = "/layouts/paper"
+                    Url = "/layout/paper"
                 },
                 new()
                 {
                     Name = "Layout",
-                    Url = "/layouts/layout"
+                    Url = "/layout/layout"
                 },
                 new()
                 {
                     Name = "Progress Indicator",
-                    Url = "components/progress-indicator"
+                    Url = "/layout/progress-indicator"
                 }
             }.OrderBy(i => i.Name)
         },
@@ -139,7 +158,7 @@
         new AeLayoutNavLink
         {
             Name = "Table",
-            Url = "/table",
+            Url = "/tables",
             Icon = "table",
             SubLinks = new List<AeLayoutNavLink>
             {
