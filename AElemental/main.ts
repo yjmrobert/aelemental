@@ -8,7 +8,8 @@ import 'carbon-web-components/es/components/dropdown/index.js';
 import 'carbon-web-components/es/components/progress-indicator/index.js';
 import 'carbon-web-components/es/components/select/index.js';
 import 'carbon-web-components/es/components/tooltip/index.js';
-import 'carbon-web-components/es/components/link/index.js'; 
+import 'carbon-web-components/es/components/link/index.js';
+import 'carbon-web-components/es/components/multi-select/index.js';
 
 import './Components/AeButton/AeButton';
 import './Components/AeCheckbox/AeCheckbox';

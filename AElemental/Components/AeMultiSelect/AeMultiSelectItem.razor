@@ -1,0 +1,37 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace AElemental.Components
+
+@inherits HtmlElement
+
+<bx-multi-select-item
+    style="@_style"
+    class="@_class"
+    value="@Value"
+    disabled="@Disabled">
+    @ChildContent
+</bx-multi-select-item>
+
+@code {
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    private string? _style;
+    private string? _class;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _style = new AeStyleBuilder()
+            .AddStyleFromAttributes(InputAttributes)
+            .NullIfEmpty();
+
+        _class = new AeCssClassBuilder()
+            .AddClassFromAttributes(InputAttributes)
+            .NullIfEmpty();
+    }
+}
